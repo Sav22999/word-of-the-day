@@ -6,19 +6,23 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isGone
-import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.Exception
+import android.R.string
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,7 +68,7 @@ class MainActivity : AppCompatActivity() {
 
 
                         if (model != null && model.date != "null") {
-                            dateElement.text = model.date
+                            dateElement.text = getTheCorrectFormatDate(model.date)
                             wordElement.text = model.word
                             definitionElement.text = model.definition
 
@@ -126,6 +130,11 @@ class MainActivity : AppCompatActivity() {
         shareButton.isGone = false
 
         val settingsButton: ImageView = findViewById(R.id.settingsSettings)
+        settingsButton.setOnClickListener {
+            val intent = Intent(this, Settings::class.java).apply {}
+            startActivity(intent)
+        }
+        settingsButton.isGone = false
     }
 
     fun copyText(textToCopy: String) {
@@ -140,5 +149,18 @@ class MainActivity : AppCompatActivity() {
 
         shareIntent.putExtra(Intent.EXTRA_SUBJECT, textToShare)
         startActivity(Intent.createChooser(shareIntent, getString(R.string.share_text)))
+    }
+
+    fun getTheCorrectFormatDate(date: String): String {
+        val patter = "dd/MM/yyyy"
+        val newDate: String =
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                LocalDate.parse(date, DateTimeFormatter.ISO_DATE)
+                    .format(DateTimeFormatter.ofPattern(patter))
+            } else {
+                SimpleDateFormat(patter).format(SimpleDateFormat("yyyy-MM-dd").parse(date))
+            }
+
+        return newDate
     }
 }

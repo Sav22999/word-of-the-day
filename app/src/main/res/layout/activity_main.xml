@@ -137,15 +137,17 @@
             app:flow_verticalAlign="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            app:layout_constraintTop_toBottomOf="@+id/topBarMain"
             tools:text="Word" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
+            android:id="@+id/topBarMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_top_bar"
-            android:padding="10sp"
+            android:paddingLeft="10sp"
+            android:paddingRight="10sp"
+            android:paddingBottom="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -170,16 +172,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="YYYY-MM-DD" />
 
-            <ImageView
-                android:id="@+id/settingsSettings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:tint="@color/white"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_settings"
-                tools:visibility="visible" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
@@ -190,7 +182,7 @@
             android:layout_marginLeft="10dp"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            app:layout_constraintTop_toBottomOf="@+id/topBarMain"
             app:srcCompat="?attr/actionModeCopyDrawable"
             tools:visibility="visible" />
 
@@ -202,8 +194,20 @@
             android:layout_marginLeft="10dp"
             android:visibility="gone"
             app:layout_constraintStart_toEndOf="@+id/copyButton"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            app:layout_constraintTop_toBottomOf="@+id/topBarMain"
             app:srcCompat="?attr/actionModeShareDrawable"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/settingsSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/wordElement"
+            app:layout_constraintTop_toBottomOf="@+id/topBarMain"
+            app:srcCompat="@drawable/ic_settings"
             tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
