@@ -1,10 +1,16 @@
 package com.saverio.wordoftheday_en
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isGone
 import org.w3c.dom.Text
 import retrofit2.Call
@@ -88,10 +94,51 @@ class MainActivity : AppCompatActivity() {
                             //null
                             println("null")
                         }
+
+                        loadButtons()
                     }
                 })
         } catch (e: Exception) {
             Log.e("Exception", e.message.toString())
         }
+    }
+
+    fun loadButtons() {
+        val word = findViewById<TextView>(R.id.wordElement).text
+
+        val copyButton: ImageView = findViewById(R.id.copyButton)
+        copyButton.setOnClickListener {
+            copyText(word.toString())
+            Toast.makeText(this, getString(R.string.word_copied), Toast.LENGTH_SHORT).show()
+        }
+        copyButton.isGone = false
+
+        val shareButton: ImageView = findViewById(R.id.shareButton)
+        shareButton.setOnClickListener {
+            shareText(
+                getString(R.string.the_word_of_the_day_is).replace(
+                    "{{*{{word}}*}}",
+                    word.toString()
+                )
+                    .replace("{{*{{link}}*}}", "https://bit.ly/2XWj2Mb")
+            )
+        }
+        shareButton.isGone = false
+
+        val settingsButton: ImageView = findViewById(R.id.settingsSettings)
+    }
+
+    fun copyText(textToCopy: String) {
+        val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val data = ClipData.newPlainText("", textToCopy)
+        clipboard.setPrimaryClip(data)
+    }
+
+    fun shareText(textToShare: String) {
+        val shareIntent = Intent(Intent.ACTION_SEND)
+        shareIntent.type = "type/palin"
+
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, textToShare)
+        startActivity(Intent.createChooser(shareIntent, getString(R.string.share_text)))
     }
 }
