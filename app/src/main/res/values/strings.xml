@@ -10,7 +10,7 @@
     <string name="etymology">Etymology</string>
 
     <string name="word_copied">Word copied to clipboard</string>
-    <string name="the_word_of_the_day_is">The Word of the Day is {{*{{word}}*}}. Find out a word per day, install {{*{{link}}*}}!</string>
+    <string name="the_word_of_the_day_is">The Word of the Day is {{*{{word}}*}}. Find out a new word per day, install {{*{{link}}*}}!</string>
     <string name="share_text">Share</string>
 
     <string name="separator">•</string>
@@ -22,9 +22,9 @@
     <string name="restart_the_app_to_apply_the_changes">Restart the app to apply the changes</string>
 
     <!-- Messages -->
-    <string name="loading_word">Loading the word of the day...</string>
+    <string name="loading_word">Loading the word of the day…</string>
     <string name="internet_not_available">Internet is not available. Try later.</string>
     <string name="error_try_later">Sorry. Our server does not answer.\nTry later.</string>
-    <string name="no_daily_word_try_later">We have some problems. Now, It is not available the word of the day.\nPlease, try later.</string>
+    <string name="no_daily_word_try_later">We have some problems. Now, it is not available the word of the day.\nPlease, try later.</string>
     <string name="button_try_again">Try again</string>
 </resources>
