@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nestedScrollListen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/separator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:capitalize="none"
+            android:paddingLeft="10sp"
+            android:paddingRight="10sp"
+            android:text="•"
+            android:textSize="20sp"
+            android:textStyle="italic"
+            android:visibility="gone"
+            app:flow_horizontalAlign="start"
+            app:flow_verticalAlign="center"
+            app:layout_constraintStart_toEndOf="@+id/typeElement"
+            app:layout_constraintTop_toBottomOf="@+id/wordElement"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/definitionElement"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:capitalize="sentences"
+            android:padding="10sp"
+            android:textSize="20sp"
+            android:visibility="gone"
+            app:flow_horizontalAlign="start"
+            app:flow_verticalAlign="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleDefinition"
+            tools:text="definition"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/titleDefinition"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="10sp"
+            android:text="@string/definition"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:flow_horizontalAlign="start"
+            app:flow_verticalAlign="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phoneticsElement"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/etymologyElement"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:capitalize="sentences"
+            android:padding="10sp"
+            android:textSize="20sp"
+            android:visibility="gone"
+            app:flow_horizontalAlign="start"
+            app:flow_verticalAlign="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleEtymology"
+            tools:text="etymology"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/titleEtymology"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="10sp"
+            android:text="@string/etymology"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:flow_horizontalAlign="start"
+            app:flow_verticalAlign="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/definitionElement"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/phoneticsElement"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:paddingLeft="10sp"
+            android:paddingRight="10sp"
+            android:textSize="20sp"
+            app:flow_horizontalAlign="start"
+            app:flow_verticalAlign="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/separator"
+            app:layout_constraintTop_toBottomOf="@+id/wordElement"
+            tools:text="/phonetics/" />
+
+        <TextView
+            android:id="@+id/typeElement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:capitalize="none"
+            android:paddingLeft="10sp"
+            android:paddingRight="10sp"
+            android:textSize="20sp"
+            android:textStyle="italic"
+            app:flow_horizontalAlign="start"
+            app:flow_verticalAlign="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/wordElement"
+            tools:text="type" />
+
+        <TextView
+            android:id="@+id/wordElement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10sp"
+            android:paddingTop="15sp"
+            android:paddingRight="10sp"
+            android:textSize="50sp"
+            app:flow_horizontalAlign="start"
+            app:flow_verticalAlign="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            tools:text="Word" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_top_bar"
+            android:padding="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:context=".MainActivity">
+
+            <TextView
+                android:id="@+id/dateElement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:paddingTop="10sp"
+                android:paddingBottom="10sp"
+                android:text="···"
+                android:textColor="@color/white"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                app:flow_horizontalAlign="center"
+                app:flow_verticalAlign="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="YYYY-MM-DD" />
+
+            <ImageView
+                android:id="@+id/settingsSettings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_settings" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/copyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            app:srcCompat="?attr/actionModeCopyDrawable" />
+
+        <ImageView
+            android:id="@+id/shareButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintStart_toEndOf="@+id/copyButton"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            app:srcCompat="?attr/actionModeShareDrawable" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
