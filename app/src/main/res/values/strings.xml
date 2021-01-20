@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Word of the Day</string>
 
+    <string name="admob_app_id">ca-app-pub-4441008333572114~9393374757</string>
+    <string name="admob_banner_ad">ca-app-pub-4441008333572114/5206717736</string>
+
     <string name="settings">Settings</string>
 
     <string name="definition">Definition</string>
@@ -9,4 +12,6 @@
     <string name="word_copied">Word copied to clipboard</string>
     <string name="the_word_of_the_day_is">The Word of the Day is {{*{{word}}*}}. Find out a word per day, install {{*{{link}}*}}!</string>
     <string name="share_text">Share</string>
+
+    <string name="separator">•</string>
 </resources>

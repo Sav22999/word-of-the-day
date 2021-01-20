@@ -18,6 +18,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.Exception
 import android.R.string
+import com.google.android.gms.ads.*
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         loadWord()
+        loadAds()
     }
 
     fun loadWord() {
@@ -103,7 +105,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 })
         } catch (e: Exception) {
-            Log.e("Exception", e.message.toString())
+            Log.e("Error", e.message.toString())
         }
     }
 
@@ -162,5 +164,30 @@ class MainActivity : AppCompatActivity() {
             }
 
         return newDate
+    }
+
+    fun loadAds() {
+        try {
+            MobileAds.initialize(this) {}
+            val adRequest = AdRequest.Builder().build()
+            val adView: AdView = findViewById(R.id.adView)
+            adView.loadAd(adRequest)
+
+            adView.adListener = object : AdListener() {
+                override fun onAdLoaded() {
+                    adView.isGone = false
+                    super.onAdLoaded()
+                }
+
+                override fun onAdFailedToLoad(p0: LoadAdError?) {
+                    Log.e("Error", p0?.message.toString())
+                    super.onAdFailedToLoad(p0)
+                }
+            }
+
+
+        } catch (e: Exception) {
+            Log.e("Error", e.message.toString())
+        }
     }
 }

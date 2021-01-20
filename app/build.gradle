@@ -13,6 +13,7 @@ android {
         targetSdkVersion 30
         versionCode 2
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -45,4 +46,7 @@ dependencies {
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    implementation 'com.google.android.gms:play-services-ads:19.6.0'
+    implementation 'com.android.support:multidex:1.0.3'
 }
