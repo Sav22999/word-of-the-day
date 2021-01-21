@@ -25,6 +25,6 @@
     <string name="loading_word">Loading the word of the day…</string>
     <string name="internet_not_available">Internet is not available. Try later.</string>
     <string name="error_try_later">Sorry. Our server does not answer.\nTry later.</string>
-    <string name="no_daily_word_try_later">We have some problems. Now, it is not available the word of the day.\nPlease, try later.</string>
+    <string name="no_daily_word_try_later">There\'s a problem. Now, it is not available the word of the day.\nPlease, try later.</string>
     <string name="button_try_again">Try again</string>
 </resources>
