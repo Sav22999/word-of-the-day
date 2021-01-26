@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
             loadingWordMessage()
             val retrofit = Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("https://www.saveriomorelli.com/api/word-of-the-day/")
+                .baseUrl("https://www.saveriomorelli.com/api/word-of-the-day/v1/")
                 .build()
 
             val jsonAPI = retrofit.create(jsonAPI::class.java)
@@ -95,6 +95,8 @@ class MainActivity : AppCompatActivity() {
                             val etymologyTitle: TextView = findViewById(R.id.titleEtymology)
                             val etymologyElement: TextView = findViewById(R.id.etymologyElement)
 
+                            val sourceElement: TextView = findViewById(R.id.sourceElement)
+
                             if (model != null && model.date != "null") {
 
                                 setDataOffline("date", getTheCorrectFormatDate(model.date))
@@ -103,6 +105,7 @@ class MainActivity : AppCompatActivity() {
                                 setDataOffline("type", model.word_type)
                                 setDataOffline("phonetics", model.phonetics)
                                 setDataOffline("etymology", model.etymology)
+                                setDataOffline("source", model.source)
 
                                 dateElement.text = getTheCorrectFormatDate(model.date)
                                 wordElement.text = model.word
@@ -126,6 +129,14 @@ class MainActivity : AppCompatActivity() {
                                     etymologyElement.text = model.etymology
                                     etymologyElement.isGone = false
                                     etymologyTitle.isGone = false
+                                }
+
+                                if (model.source != "") {
+                                    sourceElement.isGone = false
+                                    sourceElement.text = getString(R.string.source_from).replace(
+                                        "{{*{{source}}*}}",
+                                        model.source
+                                    )
                                 }
 
                                 loadButtons()
@@ -318,6 +329,12 @@ class MainActivity : AppCompatActivity() {
                     getDataOffline("etymology"),
                     save = false
                 )
+                setTextView(
+                    findViewById(R.id.sourceElement),
+                    "source",
+                    getDataOffline("source"),
+                    save = false
+                )
 
                 val separator: TextView = findViewById(R.id.separator)
                 if (getDataOffline("type") != "" && getDataOffline("phonetics") != "") {
@@ -341,6 +358,7 @@ class MainActivity : AppCompatActivity() {
         setTextView(findViewById(R.id.typeElement), "type", "")
         setTextView(findViewById(R.id.phoneticsElement), "phonetics", "")
         setTextView(findViewById(R.id.etymologyElement), "etymology", "")
+        setTextView(findViewById(R.id.sourceElement), "source", "")
 
         val separator: TextView = findViewById(R.id.separator)
         if (getDataOffline("type") != "" && getDataOffline("phonetics") != "") {
@@ -364,6 +382,7 @@ class MainActivity : AppCompatActivity() {
         setTextView(findViewById(R.id.typeElement), "type", "", false)
         setTextView(findViewById(R.id.phoneticsElement), "phonetics", "", false)
         setTextView(findViewById(R.id.etymologyElement), "etymology", "", false)
+        setTextView(findViewById(R.id.sourceElement), "source", "", false)
 
         val separator: TextView = findViewById(R.id.separator)
         separator.isGone = true
@@ -393,6 +412,12 @@ class MainActivity : AppCompatActivity() {
         } else if (data == "etymology") {
             textView.isGone = true
             etymologyTitle.isGone = true
+        }
+
+        val sourceElement: TextView = findViewById(R.id.sourceElement)
+        if (data == "source" && value != "") {
+            sourceElement.isGone = false
+            sourceElement.text = getString(R.string.source_from).replace("{{*{{source}}*}}", value)
         }
     }
 

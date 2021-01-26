@@ -19,5 +19,8 @@ class Model(
     val phonetics: String,
 
     @SerializedName("etymology")
-    val etymology: String
+    val etymology: String,
+
+    @SerializedName("source")
+    val source: String
 )
