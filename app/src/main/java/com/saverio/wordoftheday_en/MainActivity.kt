@@ -59,109 +59,17 @@ class MainActivity : AppCompatActivity() {
 
     fun loadWord() {
         if (isConnected()) {
-            attempts++
-
             loadingWordMessage()
-            val retrofit = Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("https://www.saveriomorelli.com/api/word-of-the-day/v1/")
-                .build()
-
-            val jsonAPI = retrofit.create(jsonAPI::class.java)
-            val mcall: Call<Model> = jsonAPI.getInfo()
-            try {
-                mcall.enqueue(
-                    object : Callback<Model> {
-                        override fun onFailure(call: Call<Model>, t: Throwable) {
-                            Log.e("Error", t.message.toString())
-                        }
-
-                        override fun onResponse(
-                            call: Call<Model>,
-                            response: Response<Model>
-                        ) {
-                            hideMessage()
-
-                            val model: Model? = response.body()
-
-                            val dateElement: TextView = findViewById(R.id.dateElement)
-                            val wordElement: TextView = findViewById(R.id.wordElement)
-
-                            val definitionTitle: TextView = findViewById(R.id.titleDefinition)
-                            val definitionElement: TextView = findViewById(R.id.definitionElement)
-
-                            val separator: TextView = findViewById(R.id.separator)
-                            val typeElement: TextView = findViewById(R.id.typeElement)
-                            val phoneticsElement: TextView = findViewById(R.id.phoneticsElement)
-
-                            val etymologyTitle: TextView = findViewById(R.id.titleEtymology)
-                            val etymologyElement: TextView = findViewById(R.id.etymologyElement)
-
-                            val sourceElement: TextView = findViewById(R.id.sourceElement)
-
-                            if (model != null && model.date != "null") {
-
-                                setDataOffline("date", getTheCorrectFormatDate(model.date))
-                                setDataOffline("word", model.word)
-                                setDataOffline("definition", model.definition)
-                                setDataOffline("type", model.word_type)
-                                setDataOffline("phonetics", model.phonetics)
-                                setDataOffline("etymology", model.etymology)
-                                setDataOffline("source", model.source)
-
-                                dateElement.text = getTheCorrectFormatDate(model.date)
-                                wordElement.text = model.word
-                                definitionElement.text = model.definition
-
-                                if (model.definition != "") {
-                                    definitionElement.text = model.definition
-                                    definitionElement.isGone = false
-                                    definitionTitle.isGone = false
-                                }
-
-                                if (model.word_type != "" && model.phonetics != "") {
-                                    separator.isGone = false
-                                }
-                                typeElement.text = model.word_type
-                                if (model.phonetics != "") "/${model.phonetics}/".also {
-                                    phoneticsElement.text = it
-                                }
-
-                                if (model.etymology != "") {
-                                    etymologyElement.text = model.etymology
-                                    etymologyElement.isGone = false
-                                    etymologyTitle.isGone = false
-                                }
-
-                                if (model.source != "") {
-                                    sourceElement.isGone = false
-                                    sourceElement.text = getString(R.string.source_from).replace(
-                                        "{{*{{source}}*}}",
-                                        model.source
-                                    )
-                                }
-
-                                loadButtons()
-                                setNotification()
-                            } else if (model != null && model.date == "null") {
-                                //no word
-                                if (attempts <= maxAttempts) {
-                                    loadWord()
-                                } else {
-                                    noWordOfTheDayMessage()
-                                }
-                            } else {
-                                //null
-                                if (attempts <= maxAttempts) {
-                                    loadWord()
-                                } else {
-                                    errorNullMessage()
-                                }
-                            }
-                        }
-                    })
-            } catch (e: Exception) {
-                Log.e("Error", e.message.toString())
+            var dailyWord: LoadWord = LoadWord()
+            if (dailyWord.loadWord(
+                    this,
+                    attempts,
+                    maxAttempts,
+                    pattern,
+                    mainActivity = this
+                ) == -1
+            ) {
+                errorNullMessage()
             }
         } else {
             loadDataOffline()
@@ -210,19 +118,6 @@ class MainActivity : AppCompatActivity() {
 
         shareIntent.putExtra(Intent.EXTRA_SUBJECT, textToShare)
         startActivity(Intent.createChooser(shareIntent, getString(R.string.share_text)))
-    }
-
-    @SuppressLint("SimpleDateFormat")
-    fun getTheCorrectFormatDate(date: String): String {
-        val newDate: String =
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                LocalDate.parse(date, DateTimeFormatter.ISO_DATE)
-                    .format(DateTimeFormatter.ofPattern(pattern))
-            } else {
-                SimpleDateFormat(pattern).format(SimpleDateFormat("yyyy-MM-dd").parse(date)!!)
-            }
-
-        return newDate
     }
 
     fun loadAds() {
@@ -359,6 +254,66 @@ class MainActivity : AppCompatActivity() {
         } else {
             loadWord()
         }
+    }
+
+    fun setAllFields(
+        date: String,
+        word: String,
+        definition: String,
+        phonetics: String,
+        word_type: String,
+        etymology: String,
+        source: String
+    ) {
+        val dateElement: TextView = findViewById(R.id.dateElement)
+        val wordElement: TextView = findViewById(R.id.wordElement)
+
+        val definitionTitle: TextView = findViewById(R.id.titleDefinition)
+        val definitionElement: TextView = findViewById(R.id.definitionElement)
+
+        val separator: TextView = findViewById(R.id.separator)
+        val typeElement: TextView = findViewById(R.id.typeElement)
+        val phoneticsElement: TextView = findViewById(R.id.phoneticsElement)
+
+        val etymologyTitle: TextView = findViewById(R.id.titleEtymology)
+        val etymologyElement: TextView = findViewById(R.id.etymologyElement)
+
+        val sourceElement: TextView = findViewById(R.id.sourceElement)
+
+        dateElement.text = getTheCorrectFormatDate(date)
+        wordElement.text = word
+        definitionElement.text = definition
+
+        if (definition != "") {
+            definitionElement.text = definition
+            definitionElement.isGone = false
+            definitionTitle.isGone = false
+        }
+
+        if (word_type != "" && phonetics != "") {
+            separator.isGone = false
+        }
+        typeElement.text = word_type
+        if (phonetics != "") "/${phonetics}/".also {
+            phoneticsElement.text = it
+        }
+
+        if (etymology != "") {
+            etymologyElement.text = etymology
+            etymologyElement.isGone = false
+            etymologyTitle.isGone = false
+        }
+
+        if (source != "") {
+            sourceElement.isGone = false
+            sourceElement.text = getString(R.string.source_from).replace(
+                "{{*{{source}}*}}",
+                source
+            )
+        }
+
+        loadButtons()
+        setNotification()
     }
 
     fun resetDataOffline() {
@@ -518,23 +473,11 @@ class MainActivity : AppCompatActivity() {
             calendar.set(Calendar.MINUTE, minute)
             calendar.set(Calendar.SECOND, second)
 
-            var notificationNumber = getSharedPreferences(
-                "notificationNumber",
-                Context.MODE_PRIVATE
-            ).getInt("notificationNumber", 0)
 
-            val channelId =
-                "${packageName}_notification_${notificationNumber}"
-            val channelName = "${packageName}_notification"
+
+
 
             val notificationIntent = Intent(this, NotificationReceiver::class.java)
-            notificationIntent.putExtra("title", getDataOffline("word"))
-            notificationIntent.putExtra("text", getString(R.string.open_the_app_to_learn_more))
-            notificationIntent.putExtra("notificationNumber", notificationNumber)
-
-            notificationNumber += 1
-            getSharedPreferences("notificationNumber", Context.MODE_PRIVATE).edit()
-                .putInt("notificationNumber", notificationNumber).apply()
 
             val pendingIntent = PendingIntent.getBroadcast(
                 applicationContext,
@@ -557,5 +500,18 @@ class MainActivity : AppCompatActivity() {
     fun setWordSawToday(context: Context, currentDate: String) {
         context.getSharedPreferences("lastNotificationDate", Context.MODE_PRIVATE).edit()
             .putString("lastNotificationDate", currentDate).apply()
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun getTheCorrectFormatDate(date: String): String {
+        val newDate: String =
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                LocalDate.parse(date, DateTimeFormatter.ISO_DATE)
+                    .format(DateTimeFormatter.ofPattern(pattern))
+            } else {
+                SimpleDateFormat(pattern).format(SimpleDateFormat("yyyy-MM-dd").parse(date)!!)
+            }
+
+        return newDate
     }
 }

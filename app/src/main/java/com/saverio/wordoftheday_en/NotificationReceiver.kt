@@ -11,6 +11,7 @@ import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
 import androidx.core.app.NotificationCompat
+import org.w3c.dom.Text
 import java.util.*
 
 
@@ -18,25 +19,38 @@ class NotificationReceiver : BroadcastReceiver() {
 
     lateinit var title: String
     lateinit var text: String
-    var notificationNumberParameter: Int = 0
+
+    var connected = false
+    val pattern = "dd/MM/yyyy"
+
+    var attempts = 0
+    val maxAttempts = 5
+
+    lateinit var context: Context
 
     override fun onReceive(context: Context, intent: Intent) {
-        title = intent.getStringExtra("title").toString()
-        text = intent.getStringExtra("text").toString()
-        notificationNumberParameter = intent.getIntExtra("notificationNumber", 0)
-        sendNotification(context, title, text, true)
+        this.context = context
+
+        var loadWord = LoadWord()
+        loadWord.loadWord(context, attempts, maxAttempts, pattern, notificationReceiver = this)
+    }
+
+    fun sendNow(title: String, text: String, number: Int) {
+        this.title = title
+        this.text = text
+        sendNotification(context, title, text, true, number)
     }
 
     fun sendNotification(
         context: Context,
         title: String,
         message: String,
-        autoCancel: Boolean = true
+        autoCancel: Boolean = true,
+        notificationNumber: Int
     ) {
-        var notificationNumber = notificationNumberParameter
-        var NOTIFICATION_CHANNEL_ID =
+        val NOTIFICATION_CHANNEL_ID =
             "${context.packageName.replace(".", "_")}_notification_${notificationNumber}"
-        var NOTIFICATION_CHANNEL_NAME = "${context.packageName}_notification".replace(".", "_")
+        val NOTIFICATION_CHANNEL_NAME = "${context.packageName}_notification".replace(".", "_")
         val notificationManager =
             context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager?
 
@@ -76,19 +90,32 @@ class NotificationReceiver : BroadcastReceiver() {
             "${c.get(Calendar.YEAR)}-${c.get(Calendar.MONTH + 1)}-${c.get(Calendar.DAY_OF_MONTH)}"
 
         if (getPushNotifications(context)) {
-            if (currentDate != savedDate) {
+            if (c.get(Calendar.HOUR_OF_DAY) == 10 &&
+                (currentDate != savedDate || (getSavedWord(context) != "" && getSavedWord(context) != title))
+            ) {
                 notificationManager!!.notify(
                     notificationNumber,
                     notificationBuilder.build()
                 )
             } else {
-                //Notification already sent
+                //Notification already sent (or it's not the 10 o'clock)
             }
         } else {
             //Notifications disabled
         }
 
         setWordSawToday(context, currentDate)
+        setSavedWord(context, title)
+    }
+
+    fun getSavedWord(context: Context): String? {
+        return context.getSharedPreferences("wordNotification", Context.MODE_PRIVATE)
+            .getString("wordNotification", "")
+    }
+
+    fun setSavedWord(context: Context, word: String) {
+        context.getSharedPreferences("wordNotification", Context.MODE_PRIVATE).edit()
+            .putString("wordNotification", word).apply()
     }
 
     fun getPushNotifications(context: Context): Boolean {
