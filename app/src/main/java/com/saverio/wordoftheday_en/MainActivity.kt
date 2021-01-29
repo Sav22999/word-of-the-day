@@ -504,7 +504,7 @@ class MainActivity : AppCompatActivity() {
             val sdf = SimpleDateFormat(pattern)
             val currentDate = sdf.format(Date())
             if (getDataOffline("date") == currentDate) {
-                checkNotification(c.get(Calendar.HOUR_OF_DAY), 10, 0)
+                checkNotification(10, 0, 0)
             } else {
                 loadWord()
             }
