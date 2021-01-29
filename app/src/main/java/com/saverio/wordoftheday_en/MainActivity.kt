@@ -1,27 +1,28 @@
 package com.saverio.wordoftheday_en
 
 import android.annotation.SuppressLint
+import android.app.*
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
+import androidx.lifecycle.Observer
+import com.google.android.gms.ads.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.lang.Exception
-import androidx.lifecycle.Observer
-import com.google.android.gms.ads.*
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         loadWord()
         checkAds()
+        setNotification()
 
         val buttonCheckAgain: Button = findViewById(R.id.checkAgainButton)
         buttonCheckAgain.setOnClickListener {
@@ -140,6 +142,7 @@ class MainActivity : AppCompatActivity() {
                                 }
 
                                 loadButtons()
+                                setNotification()
                             } else if (model != null && model.date == "null") {
                                 //no word
                                 if (attempts <= maxAttempts) {
@@ -253,6 +256,13 @@ class MainActivity : AppCompatActivity() {
 
     fun checkAds() {
         if (getAds()) loadAds()
+    }
+
+    fun getPushNotifications(): Boolean {
+        return getSharedPreferences(
+            "pushNotifications",
+            Context.MODE_PRIVATE
+        ).getBoolean("pushNotifications", true)
     }
 
     fun checkNetwork() {
@@ -482,5 +492,70 @@ class MainActivity : AppCompatActivity() {
         val sdf = SimpleDateFormat(pattern)
         val currentDate = sdf.format(Date())
         setTextView(findViewById(R.id.dateElement), "date", currentDate.toString(), save = false)
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun setNotification() {
+        val c = Calendar.getInstance()
+        val currentDate =
+            "${c.get(Calendar.YEAR)}-${c.get(Calendar.MONTH + 1)}-${c.get(Calendar.DAY_OF_MONTH)}"
+        setWordSawToday(this, currentDate)
+        if (getPushNotifications()) {
+            val sdf = SimpleDateFormat(pattern)
+            val currentDate = sdf.format(Date())
+            if (getDataOffline("date") == currentDate) {
+                checkNotification(c.get(Calendar.HOUR_OF_DAY), 10, 0)
+            } else {
+                loadWord()
+            }
+        }
+    }
+
+    fun checkNotification(hour: Int, minute: Int, second: Int) {
+        try {
+            val calendar = Calendar.getInstance()
+            calendar.set(Calendar.HOUR_OF_DAY, hour)
+            calendar.set(Calendar.MINUTE, minute)
+            calendar.set(Calendar.SECOND, second)
+
+            var notificationNumber = getSharedPreferences(
+                "notificationNumber",
+                Context.MODE_PRIVATE
+            ).getInt("notificationNumber", 0)
+
+            val channelId =
+                "${packageName}_notification_${notificationNumber}"
+            val channelName = "${packageName}_notification"
+
+            val notificationIntent = Intent(this, NotificationReceiver::class.java)
+            notificationIntent.putExtra("title", getDataOffline("word"))
+            notificationIntent.putExtra("text", getString(R.string.open_the_app_to_learn_more))
+            notificationIntent.putExtra("notificationNumber", notificationNumber)
+
+            notificationNumber += 1
+            getSharedPreferences("notificationNumber", Context.MODE_PRIVATE).edit()
+                .putInt("notificationNumber", notificationNumber).apply()
+
+            val pendingIntent = PendingIntent.getBroadcast(
+                applicationContext,
+                100,
+                notificationIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT
+            )
+            val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+            alarmManager.setRepeating(
+                AlarmManager.RTC_WAKEUP,
+                calendar.timeInMillis,
+                10000,
+                pendingIntent
+            )
+        } catch (e: Exception) {
+            //Exception
+        }
+    }
+
+    fun setWordSawToday(context: Context, currentDate: String) {
+        context.getSharedPreferences("lastNotificationDate", Context.MODE_PRIVATE).edit()
+            .putString("lastNotificationDate", currentDate).apply()
     }
 }
