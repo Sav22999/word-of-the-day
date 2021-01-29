@@ -37,8 +37,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".NotificationActivity" />
-
         <receiver android:name=".NotificationReceiver" />
 
         <meta-data
