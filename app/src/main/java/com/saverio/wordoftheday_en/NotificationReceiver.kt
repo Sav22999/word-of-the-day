@@ -90,7 +90,7 @@ class NotificationReceiver : BroadcastReceiver() {
             "${c.get(Calendar.YEAR)}-${c.get(Calendar.MONTH + 1)}-${c.get(Calendar.DAY_OF_MONTH)}"
 
         if (getPushNotifications(context)) {
-            if (c.get(Calendar.HOUR_OF_DAY) == 10 &&
+            if (c.get(Calendar.HOUR_OF_DAY) >= 10 &&
                 (currentDate != savedDate || (getSavedWord(context) != "" && getSavedWord(context) != title))
             ) {
                 notificationManager!!.notify(

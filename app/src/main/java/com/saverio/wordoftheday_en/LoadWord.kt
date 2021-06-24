@@ -3,9 +3,6 @@ package com.saverio.wordoftheday_en
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
-import android.widget.Button
-import android.widget.TextView
-import androidx.core.view.isGone
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,6 +15,8 @@ import java.time.format.DateTimeFormatter
 class LoadWord {
     lateinit var mainActivity: MainActivity
     lateinit var notificationReceiver: NotificationReceiver
+
+    val app_url = "word-of-the-day"
 
     fun loadWord(
         context: Context,
@@ -33,11 +32,10 @@ class LoadWord {
 
         var returnCode = 0
         var attempsTemp = attempts
-        attempsTemp++
 
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("https://www.saveriomorelli.com/api/word-of-the-day/v1/")
+            .baseUrl("https://www.saveriomorelli.com/api/$app_url/v1/")
             .build()
 
         val jsonAPI = retrofit.create(jsonAPI::class.java)
@@ -106,8 +104,14 @@ class LoadWord {
                             }
                         } else if (model != null && model.date == "null") {
                             //no word
-                            if (attempts <= maxAttempts) {
-                                loadWord(context, attempts, maxAttempts, pattern, mainActivity)
+                            if (attempsTemp <= maxAttempts) {
+                                loadWord(
+                                    context,
+                                    attempsTemp + 1,
+                                    maxAttempts,
+                                    pattern,
+                                    mainActivity
+                                )
                             } else {
                                 if (mainActivity != null) {
                                     noWordOfTheDayMessage()
@@ -115,8 +119,14 @@ class LoadWord {
                             }
                         } else {
                             //null
-                            if (attempts <= maxAttempts) {
-                                loadWord(context, attempts, maxAttempts, pattern, mainActivity)
+                            if (attempsTemp <= maxAttempts) {
+                                loadWord(
+                                    context,
+                                    attempsTemp + 1,
+                                    maxAttempts,
+                                    pattern,
+                                    mainActivity
+                                )
                             } else {
                                 if (mainActivity != null) {
                                     errorNullMessage()

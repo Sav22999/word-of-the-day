@@ -1,10 +1,9 @@
 package com.saverio.wordoftheday_en
 
-import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import androidx.appcompat.app.AppCompatActivity
 
 class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,6 +14,6 @@ class SplashScreen : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }, 3000)
+        }, 400)
     }
 }

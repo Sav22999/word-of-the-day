@@ -1,12 +1,12 @@
 package com.saverio.wordoftheday_en
 
 import android.annotation.SuppressLint
-import android.app.*
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -18,11 +18,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
 import androidx.lifecycle.Observer
 import com.google.android.gms.ads.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -472,9 +467,6 @@ class MainActivity : AppCompatActivity() {
             calendar.set(Calendar.HOUR_OF_DAY, hour)
             calendar.set(Calendar.MINUTE, minute)
             calendar.set(Calendar.SECOND, second)
-
-
-
 
 
             val notificationIntent = Intent(this, NotificationReceiver::class.java)
