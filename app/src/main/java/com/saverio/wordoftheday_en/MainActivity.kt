@@ -449,12 +449,12 @@ class MainActivity : AppCompatActivity() {
         val c = Calendar.getInstance()
         val currentDate =
             "${c.get(Calendar.YEAR)}-${c.get(Calendar.MONTH + 1)}-${c.get(Calendar.DAY_OF_MONTH)}"
-        setWordSawToday(this, currentDate)
+        //setNotificationDate(this, currentDate)
         if (getPushNotifications()) {
             val sdf = SimpleDateFormat(pattern)
             val currentDate = sdf.format(Date())
             if (getDataOffline("date") == currentDate) {
-                checkNotification(10, 0, 0)
+                checkNotification(0, 0, 5)
             } else {
                 loadWord()
             }
@@ -468,7 +468,6 @@ class MainActivity : AppCompatActivity() {
             calendar.set(Calendar.MINUTE, minute)
             calendar.set(Calendar.SECOND, second)
 
-
             val notificationIntent = Intent(this, NotificationReceiver::class.java)
 
             val pendingIntent = PendingIntent.getBroadcast(
@@ -481,7 +480,7 @@ class MainActivity : AppCompatActivity() {
             alarmManager.setRepeating(
                 AlarmManager.RTC_WAKEUP,
                 calendar.timeInMillis,
-                10000,
+                1000,
                 pendingIntent
             )
         } catch (e: Exception) {
@@ -489,7 +488,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun setWordSawToday(context: Context, currentDate: String) {
+    fun setNotificationDate(context: Context, currentDate: String) {
         context.getSharedPreferences("lastNotificationDate", Context.MODE_PRIVATE).edit()
             .putString("lastNotificationDate", currentDate).apply()
     }

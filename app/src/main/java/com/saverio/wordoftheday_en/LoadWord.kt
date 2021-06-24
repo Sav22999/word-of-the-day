@@ -93,14 +93,6 @@ class LoadWord {
                                     context.getString(R.string.open_the_app_to_learn_more),
                                     notificationNumber
                                 )
-
-                                //increment notification number
-                                notificationNumber += 1
-                                context.getSharedPreferences(
-                                    "notificationNumber",
-                                    Context.MODE_PRIVATE
-                                ).edit()
-                                    .putInt("notificationNumber", notificationNumber).apply()
                             }
                         } else if (model != null && model.date == "null") {
                             //no word

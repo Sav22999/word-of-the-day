@@ -11,7 +11,6 @@ import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
 import androidx.core.app.NotificationCompat
-import org.w3c.dom.Text
 import java.util.*
 
 
@@ -71,18 +70,15 @@ class NotificationReceiver : BroadcastReceiver() {
             PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT)
 
         val defaultSoundUri: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-        val notificationBuilder =
+        var notificationBuilder =
             NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_notification_icon)
                 .setContentTitle(title)
-                .setContentText(message)
+                .setContentText(notificationNumber.toString() + "|" + message)
                 .setAutoCancel(autoCancel) //.setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent)
 
-        val savedDate = context.getSharedPreferences(
-            "lastNotificationDate",
-            Context.MODE_PRIVATE
-        ).getString("lastNotificationDate", "")
+        val savedDate = getNotificationDate(context)
 
         val c = Calendar.getInstance()
 
@@ -90,21 +86,56 @@ class NotificationReceiver : BroadcastReceiver() {
             "${c.get(Calendar.YEAR)}-${c.get(Calendar.MONTH + 1)}-${c.get(Calendar.DAY_OF_MONTH)}"
 
         if (getPushNotifications(context)) {
-            if (c.get(Calendar.HOUR_OF_DAY) >= 10 &&
-                (currentDate != savedDate || (getSavedWord(context) != "" && getSavedWord(context) != title))
+            if (c.get(Calendar.HOUR_OF_DAY) >= 6 &&
+                (currentDate != savedDate || getSavedWord(context) != title) || getSavedWord(context) == ""
             ) {
                 notificationManager!!.notify(
                     notificationNumber,
                     notificationBuilder.build()
                 )
+                setNotificationDate(context, currentDate)
+                incrementNotificationNumber(context, notificationNumber)
             } else {
-                //Notification already sent (or it's not the 10 o'clock)
+                //Notification already sent (or it's too early o'clock)
+
+                /*
+                //TODO: delete this part (just for test)
+                //START DELETE
+                notificationBuilder = NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
+                    .setSmallIcon(R.drawable.ic_notification_icon)
+                    .setContentTitle("$notificationNumber|Already sent")
+                    .setContentText(message)
+                    .setAutoCancel(autoCancel) //.setSound(defaultSoundUri)
+                    .setContentIntent(pendingIntent)
+                notificationManager!!.notify(
+                    notificationNumber,
+                    notificationBuilder.build()
+                )
+                incrementNotificationNumber(context, notificationNumber)
+                //END DELETE
+                */
             }
         } else {
             //Notifications disabled
+
+            /*
+            //TODO: delete this part (just for test)
+            //START DELETE
+            notificationBuilder = NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_notification_icon)
+                .setContentTitle("$notificationNumber|Disabled")
+                .setContentText(message)
+                .setAutoCancel(autoCancel) //.setSound(defaultSoundUri)
+                .setContentIntent(pendingIntent)
+            notificationManager!!.notify(
+                notificationNumber,
+                notificationBuilder.build()
+            )
+            incrementNotificationNumber(context, notificationNumber)
+            //END DELETE
+            */
         }
 
-        setWordSawToday(context, currentDate)
         setSavedWord(context, title)
     }
 
@@ -125,8 +156,25 @@ class NotificationReceiver : BroadcastReceiver() {
         ).getBoolean("pushNotifications", true)
     }
 
-    fun setWordSawToday(context: Context, currentDate: String) {
+    fun getNotificationDate(context: Context): String {
+        return context.getSharedPreferences(
+            "lastNotificationDate",
+            Context.MODE_PRIVATE
+        ).getString("lastNotificationDate", "").toString()
+    }
+
+    fun setNotificationDate(context: Context, currentDate: String) {
         context.getSharedPreferences("lastNotificationDate", Context.MODE_PRIVATE).edit()
             .putString("lastNotificationDate", currentDate).apply()
+    }
+
+    fun incrementNotificationNumber(context: Context, notificationNumber: Int) {
+        //increment notification number
+        var notificationNumberTemp = notificationNumber + 1
+        context.getSharedPreferences(
+            "notificationNumber",
+            Context.MODE_PRIVATE
+        ).edit()
+            .putInt("notificationNumber", notificationNumberTemp).apply()
     }
 }
