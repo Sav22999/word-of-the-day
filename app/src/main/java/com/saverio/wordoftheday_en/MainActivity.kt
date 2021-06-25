@@ -112,10 +112,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun shareText(textToShare: String) {
-        val shareIntent = Intent(Intent.ACTION_SEND)
-        shareIntent.type = "type/palin"
-
-        shareIntent.putExtra(Intent.EXTRA_SUBJECT, textToShare)
+        val shareIntent = Intent()
+        shareIntent.action = Intent.ACTION_SEND
+        shareIntent.putExtra(Intent.EXTRA_TEXT, textToShare)
+        shareIntent.type = "text/plain"
         startActivity(Intent.createChooser(shareIntent, getString(R.string.share_text)))
     }
 
