@@ -25,6 +25,8 @@ class NotificationReceiver : BroadcastReceiver() {
     var attempts = 0
     val maxAttempts = 5
 
+    val hour_show = 7
+
     lateinit var context: Context
 
     override fun onReceive(context: Context, intent: Intent) {
@@ -86,7 +88,7 @@ class NotificationReceiver : BroadcastReceiver() {
             "${c.get(Calendar.YEAR)}-${c.get(Calendar.MONTH + 1)}-${c.get(Calendar.DAY_OF_MONTH)}"
 
         if (getPushNotifications(context)) {
-            if (c.get(Calendar.HOUR_OF_DAY) >= 6 &&
+            if (c.get(Calendar.HOUR_OF_DAY) >= hour_show &&
                 (currentDate != savedDate || getSavedWord(context) != title) || getSavedWord(context) == ""
             ) {
                 notificationManager!!.notify(
@@ -97,43 +99,9 @@ class NotificationReceiver : BroadcastReceiver() {
                 incrementNotificationNumber(context, notificationNumber)
             } else {
                 //Notification already sent (or it's too early o'clock)
-
-                /*
-                //TODO: delete this part (just for test)
-                //START DELETE
-                notificationBuilder = NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
-                    .setSmallIcon(R.drawable.ic_notification_icon)
-                    .setContentTitle("$notificationNumber|Already sent")
-                    .setContentText(message)
-                    .setAutoCancel(autoCancel) //.setSound(defaultSoundUri)
-                    .setContentIntent(pendingIntent)
-                notificationManager!!.notify(
-                    notificationNumber,
-                    notificationBuilder.build()
-                )
-                incrementNotificationNumber(context, notificationNumber)
-                //END DELETE
-                */
             }
         } else {
             //Notifications disabled
-
-            /*
-            //TODO: delete this part (just for test)
-            //START DELETE
-            notificationBuilder = NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_notification_icon)
-                .setContentTitle("$notificationNumber|Disabled")
-                .setContentText(message)
-                .setAutoCancel(autoCancel) //.setSound(defaultSoundUri)
-                .setContentIntent(pendingIntent)
-            notificationManager!!.notify(
-                notificationNumber,
-                notificationBuilder.build()
-            )
-            incrementNotificationNumber(context, notificationNumber)
-            //END DELETE
-            */
         }
 
         setSavedWord(context, title)

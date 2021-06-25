@@ -12,6 +12,39 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/dialogOfflineMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/radius_square"
+            android:padding="10sp"
+            app:layout_constraintBottom_toTopOf="@+id/adView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:context=".MainActivity">
+
+            <TextView
+                android:id="@+id/dialogOfflineModeText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:text="@string/offline_mode"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:flow_horizontalAlign="center"
+                app:flow_verticalAlign="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <TextView
             android:id="@+id/sourceElement"
             android:layout_width="0dp"
@@ -26,7 +59,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etymologyElement"
-            tools:text="etymology"
+            tools:text="source"
             tools:visibility="visible" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -298,7 +331,7 @@
             android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/adView"
+            app:layout_constraintBottom_toTopOf="@+id/dialogOfflineMode"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sourceElement" />

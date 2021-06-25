@@ -165,6 +165,8 @@ class MainActivity : AppCompatActivity() {
                 checkAds()
             } else {
                 loadDataOffline()
+                val offlineModeMessage = findViewById<ConstraintLayout>(R.id.dialogOfflineMode)
+                offlineModeMessage.isGone = false
             }
         })
     }
@@ -435,6 +437,9 @@ class MainActivity : AppCompatActivity() {
 
         val buttonCheckAgain: Button = findViewById(R.id.checkAgainButton)
         buttonCheckAgain.isGone = true
+
+        val offlineModeMessage = findViewById<ConstraintLayout>(R.id.dialogOfflineMode)
+        offlineModeMessage.isGone = true
     }
 
     @SuppressLint("SimpleDateFormat")
