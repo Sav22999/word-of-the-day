@@ -26,7 +26,7 @@
     <string name="switch_ads_settings_details">In this way you will support the developer freely</string>
 
     <string name="switch_notification_settings">Show push notifications</string>
-    <string name="switch_notification_settings_details">You will receive a push notification every day at 07:00 am if you do not open the app before. This could not work caused by OS battery optimisation</string>
+    <string name="switch_notification_settings_details">You will receive a push notification every day at 07:00 am.\nThis could not work caused by OS battery optimisation</string>
 
     <!-- Messages -->
     <string name="loading_word">Loading the word of the day…</string>

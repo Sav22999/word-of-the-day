@@ -330,7 +330,7 @@
             tools:visibility="visible"></com.google.android.gms.ads.AdView>
 
         <View
-            android:id="@+id/view"
+            android:id="@+id/mainSeparator1"
             android:layout_width="match_parent"
             android:layout_height="20dp"
             app:layout_constraintBottom_toTopOf="@+id/dialogOfflineMode"

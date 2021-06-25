@@ -50,6 +50,13 @@ class MainActivity : AppCompatActivity() {
             attempts = 0
             loadWord()
         }
+
+        val settingsButton: ImageView = findViewById(R.id.settingsButton)
+        settingsButton.setOnClickListener {
+            val intent = Intent(this, Settings::class.java).apply {}
+            startActivity(intent)
+        }
+        settingsButton.isGone = false
     }
 
     fun loadWord() {
@@ -66,6 +73,10 @@ class MainActivity : AppCompatActivity() {
             ) {
                 errorNullMessage()
             }
+            val c = Calendar.getInstance()
+            val currentDate =
+                "${c.get(Calendar.YEAR)}-${c.get(Calendar.MONTH + 1)}-${c.get(Calendar.DAY_OF_MONTH)}"
+            setNotificationDate(this, currentDate)
         } else {
             loadDataOffline()
         }
@@ -92,13 +103,6 @@ class MainActivity : AppCompatActivity() {
             )
         }
         shareButton.isGone = false
-
-        val settingsButton: ImageView = findViewById(R.id.settingsButton)
-        settingsButton.setOnClickListener {
-            val intent = Intent(this, Settings::class.java).apply {}
-            startActivity(intent)
-        }
-        settingsButton.isGone = false
     }
 
     fun copyText(textToCopy: String) {
@@ -335,8 +339,6 @@ class MainActivity : AppCompatActivity() {
         copyButton.isGone = true
         val shareButton: ImageView = findViewById(R.id.shareButton)
         shareButton.isGone = true
-        val settingsButton: ImageView = findViewById(R.id.settingsButton)
-        settingsButton.isGone = true
 
         setTextView(findViewById(R.id.dateElement), "date", "", false)
         setTextView(findViewById(R.id.wordElement), "word", "", false)
@@ -451,15 +453,11 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("SimpleDateFormat")
     fun setNotification() {
-        val c = Calendar.getInstance()
-        val currentDate =
-            "${c.get(Calendar.YEAR)}-${c.get(Calendar.MONTH + 1)}-${c.get(Calendar.DAY_OF_MONTH)}"
-        //setNotificationDate(this, currentDate)
         if (getPushNotifications()) {
             val sdf = SimpleDateFormat(pattern)
             val currentDate = sdf.format(Date())
             if (getDataOffline("date") == currentDate) {
-                checkNotification(0, 0, 5)
+                checkNotification(0, 0, 1)
             } else {
                 loadWord()
             }
@@ -485,7 +483,7 @@ class MainActivity : AppCompatActivity() {
             alarmManager.setRepeating(
                 AlarmManager.RTC_WAKEUP,
                 calendar.timeInMillis,
-                1000,
+                10000,
                 pendingIntent
             )
         } catch (e: Exception) {

@@ -76,7 +76,7 @@ class NotificationReceiver : BroadcastReceiver() {
             NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_notification_icon)
                 .setContentTitle(title)
-                .setContentText(notificationNumber.toString() + "|" + message)
+                .setContentText(message)
                 .setAutoCancel(autoCancel) //.setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent)
 
