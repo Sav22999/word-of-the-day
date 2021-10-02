@@ -11,7 +11,7 @@
 
     <string name="word_copied">Word copied to clipboard</string>
     <string name="the_word_of_the_day_is">The word of the day is {{*{{word}}*}}. Find out a new word every day, install {{*{{link}}*}}!</string>
-    <string name="open_the_app_to_learn_more">Open the app to learn more about this word!</string>
+    <string name="open_the_app_to_learn_more">Tap here and open the app to learn more about this word!</string>
     <string name="share_text">Share</string>
 
     <string name="separator">•</string>

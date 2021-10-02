@@ -77,6 +77,10 @@ class NotificationReceiver : BroadcastReceiver() {
                 .setSmallIcon(R.drawable.ic_notification_icon)
                 .setContentTitle(title)
                 .setContentText(message)
+                .setStyle(
+                    NotificationCompat.BigTextStyle()
+                        .bigText(message)
+                )
                 .setAutoCancel(autoCancel) //.setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent)
 
