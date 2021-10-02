@@ -113,6 +113,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <!--
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/settingsAdsContainer"
             android:layout_width="match_parent"
@@ -156,15 +157,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+        -->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/settingsNotificationContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:padding="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/settingsAdsContainer"
+            app:layout_constraintTop_toBottomOf="@+id/settingsMessageRestart"
             tools:context=".MainActivity">
 
             <TextView
