@@ -1,0 +1,4 @@
+- Removed ads
+- Improved some graphic details
+- Improved notifications
+- Fixed a bug
