@@ -8,16 +8,15 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.os.Handler
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
 import androidx.lifecycle.Observer
-import com.google.android.gms.ads.*
+//import com.google.android.gms.ads.*
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -41,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         setSettingsNotChanged()
 
         loadWord()
-        checkAds()
+        //checkAds()
         setNotification()
 
         val buttonCheckAgain: Button = findViewById(R.id.checkAgainButton)
@@ -88,7 +87,14 @@ class MainActivity : AppCompatActivity() {
         val copyButton: ImageView = findViewById(R.id.copyButton)
         copyButton.setOnClickListener {
             copyText(word.toString())
-            Toast.makeText(this, getString(R.string.word_copied), Toast.LENGTH_SHORT).show()
+            val messageContainer: ConstraintLayout = findViewById(R.id.dialogMessageTop)
+            val messageText: TextView = findViewById(R.id.dialogMessageTopText)
+            messageText.text = getString(R.string.word_copied)
+            messageContainer.isGone = false
+            Handler().postDelayed({
+                messageContainer.isGone = true
+                messageText.text = ""
+            }, 2000)
         }
         copyButton.isGone = false
 
@@ -119,6 +125,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(Intent.createChooser(shareIntent, getString(R.string.share_text)))
     }
 
+    /*
     fun loadAds() {
         try {
             MobileAds.initialize(this) {}
@@ -151,6 +158,7 @@ class MainActivity : AppCompatActivity() {
     fun checkAds() {
         if (getAds()) loadAds()
     }
+    */
 
     fun getPushNotifications(): Boolean {
         return getSharedPreferences(
@@ -166,7 +174,7 @@ class MainActivity : AppCompatActivity() {
             hideMessage()
             if (isConnected) {
                 loadWord()
-                checkAds()
+                //checkAds()
             } else {
                 loadDataOffline()
                 val offlineModeMessage = findViewById<ConstraintLayout>(R.id.dialogOfflineMode)

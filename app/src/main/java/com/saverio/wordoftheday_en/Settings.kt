@@ -17,6 +17,7 @@ class Settings : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
+        /*
         val adsSwitch: Switch = findViewById(R.id.settingsAdsSwitch)
         adsSwitch.setOnClickListener {
             getSharedPreferences("ads", Context.MODE_PRIVATE).edit()
@@ -37,11 +38,14 @@ class Settings : AppCompatActivity() {
             true
         }
         adsSwitch.isChecked = getAds()
+        */
 
         val pushNotificationsSwitch: Switch = findViewById(R.id.settingsNotificationSwitch)
         pushNotificationsSwitch.setOnClickListener {
             getSharedPreferences("pushNotifications", Context.MODE_PRIVATE).edit()
                 .putBoolean("pushNotifications", pushNotificationsSwitch.isChecked).apply()
+            setSettingsChanged()
+            checkSettingsChanged()
         }
         val settingsNotificationContainer: ConstraintLayout =
             findViewById(R.id.settingsNotificationContainer)
@@ -51,6 +55,8 @@ class Settings : AppCompatActivity() {
                 getSharedPreferences("pushNotifications", Context.MODE_PRIVATE).edit()
                     .putBoolean("pushNotifications", pushNotificationsSwitch.isChecked).apply()
             }
+            setSettingsChanged()
+            checkSettingsChanged()
             true
         }
         pushNotificationsSwitch.isChecked = getPushNotifications()
@@ -70,9 +76,11 @@ class Settings : AppCompatActivity() {
         }
     }
 
+    /*
     fun getAds(): Boolean {
         return getSharedPreferences("ads", Context.MODE_PRIVATE).getBoolean("ads", true)
     }
+    */
 
     fun getPushNotifications(): Boolean {
         return getSharedPreferences(
