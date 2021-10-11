@@ -32,8 +32,10 @@ class NotificationReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         this.context = context
 
-        var loadWord = LoadWord()
-        loadWord.loadWord(context, attempts, maxAttempts, pattern, notificationReceiver = this)
+        if (getPushNotifications(context)) {
+            var loadWord = LoadWord()
+            loadWord.loadWord(context, attempts, maxAttempts, pattern, notificationReceiver = this)
+        }
     }
 
     fun sendNow(title: String, text: String, number: Int) {
