@@ -1,5 +1,5 @@
 <b>Every day</b> the app offers <b>a new word to learn</b>, so you will have a vast vocabulary 😍
-You can read the definition of the word 📚, its origin / etymology 🗺️, its pronounciation / phonetics (RP-IPA) 🔊.
+You can read the definition of the word 📚, its origin / etymology 🗺️, its pronunciation / phonetics (RP-IPA) 🔊.
 
 <b>You can copy or share it as well!</b> 📲
 

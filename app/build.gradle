@@ -11,11 +11,27 @@ android {
         applicationId 'com.saverio.wordoftheday_en'
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 14
-        versionName '1.4'
+        versionCode 15
+        versionName '1.4.1'
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    flavorDimensions "source_store"
+    productFlavors {
+        GPS {
+            dimension "source_store"
+            buildConfigField "String", "SOURCE_STORE", "\"GPS\""
+        }
+        FDGH {
+            dimension "source_store"
+            buildConfigField "String", "SOURCE_STORE", "\"FD-GH\""
+        }
     }
 
     buildTypes {

@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
 import androidx.lifecycle.Observer
+import com.saverio.wordoftheday_en.BuildConfig.SOURCE_STORE
+import com.saverio.wordoftheday_en.MainActivity.Companion.SOURCE_STORE
 //import com.google.android.gms.ads.*
 import java.text.SimpleDateFormat
 import java.time.LocalDate
@@ -30,6 +32,10 @@ class MainActivity : AppCompatActivity() {
 
     var attempts = 0
     val maxAttempts = 5
+
+    companion object {
+        const val SOURCE_STORE: String = BuildConfig.SOURCE_STORE
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,6 +104,11 @@ class MainActivity : AppCompatActivity() {
         }
         copyButton.isGone = false
 
+        var url = "https://play.google.com/store/apps/details?id=com.saverio.wordoftheday_en"
+        if (SOURCE_STORE == "FD-GH") {
+            url = "https://f-droid.org/packages/com.saverio.wordoftheday_en"
+        }
+
         val shareButton: ImageView = findViewById(R.id.shareButton)
         shareButton.setOnClickListener {
             shareText(
@@ -105,7 +116,7 @@ class MainActivity : AppCompatActivity() {
                     "{{*{{word}}*}}",
                     word.toString()
                 )
-                    .replace("{{*{{link}}*}}", "https://bit.ly/2XWj2Mb")
+                    .replace("{{*{{link}}*}}", url)
             )
         }
         shareButton.isGone = false
