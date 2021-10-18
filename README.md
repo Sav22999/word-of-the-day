@@ -12,7 +12,7 @@ This app is developed by Saverio Morelli, using the Android Studio IDE.
 If you have any questions, please open an issue (you can add the label `question` there).
 
 <b>Every day</b> the app offers <b>a new word to learn</b>, so you will have a vast vocabulary.
-You can read the definition of the word, its origin / etymology, its pronounciation / phonetics (RP-IPA).
+You can read the definition of the word, its origin / etymology, its pronunciation / phonetics (RP-IPA).
 
 <b>You can copy or share it as well!</b>
 
@@ -22,7 +22,7 @@ You can read the definition of the word, its origin / etymology, its pronounciat
 
 ### Where download the app
 
-[<img src="images/googlePlayBadge.png" width="200px"></img>](https://play.google.com/store/apps/details?id=com.saverio.wordoftheday_en)
+[<img src="images/googlePlayBadge.png" width="200px"></img>](https://play.google.com/store/apps/details?id=com.saverio.wordoftheday_en) [<img src="images/fDroidBadge.png" width="200px"></img>](https://f-droid.org/it/packages/com.saverio.wordoftheday_en/)  [<img src="images/amazonAppStoreBadge.png" width="200px"></img>](https://www.amazon.com/Word-day-Learn-word-every/dp/B09HPVKZD1/) 
 
 You can download the app from the Google Play.
 
@@ -30,7 +30,7 @@ You can download the app from the Google Play.
 
 If you like this project, leave a *Star* ⭐ to receive updates on your *GitHub dashboard*.
 
-You can leave also a ⭐⭐⭐⭐⭐ *stars* review on Google Play it's very important for me.
+You can leave also a ⭐⭐⭐⭐⭐ *stars* review on Google Play or Amazon AppStore it's very important for me.
 
 To support me, you can do a donation :smile: with **PayPal**, **LiberaPay** or **Ko-Fi**:
 
