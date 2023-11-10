@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId 'com.saverio.wordoftheday_en'
@@ -47,6 +47,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    namespace 'com.saverio.wordoftheday_en'
 }
 
 dependencies {
