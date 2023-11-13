@@ -1,38 +1,38 @@
 <resources>
-    <string name="app_name">Word of the Day</string>
+    <string name="app_name">Parola del giorno</string>
 
     <string name="admob_app_id">ca-app-pub-4441008333572114~9393374757</string>
     <string name="admob_banner_ad">ca-app-pub-4441008333572114/5206717736</string>
 
-    <string name="settings">Settings</string>
+    <string name="settings">Impostazioni</string>
 
-    <string name="definition">Definition</string>
-    <string name="etymology">Etymology</string>
+    <string name="definition">Definizione</string>
+    <string name="etymology">Etimologia</string>
 
-    <string name="word_copied">Word copied to clipboard</string>
-    <string name="the_word_of_the_day_is">The word of the day is {{*{{word}}*}}. Find out a new word every day, install {{*{{link}}*}}!</string>
-    <string name="open_the_app_to_learn_more">Tap here and open the app to learn more about this word!</string>
-    <string name="share_text">Share</string>
+    <string name="word_copied">Parola copiata negli appunti</string>
+    <string name="the_word_of_the_day_is">La parola del giorno è {{*{{word}}*}}. Scopri una nuova parola ogni giorno, installa {{*{{link}}*}}!</string>
+    <string name="open_the_app_to_learn_more">Fai clic qui e apri l\'app per scoprire questa parola!</string>
+    <string name="share_text">Condividi</string>
 
     <string name="separator">•</string>
 
-    <string name="source_from">Extracted from {{*{{source}}*}}</string>
+    <string name="source_from">Estratto da {{*{{source}}*}}</string>
 
 
     <!-- Settings -->
-    <string name="restart_the_app_to_apply_the_changes">Restart the app to apply the changes</string>
+    <string name="restart_the_app_to_apply_the_changes">Riavvia l\'app per applicare le modifiche</string>
 
-    <string name="switch_ads_settings">Show advertisements</string>
-    <string name="switch_ads_settings_details">In this way you will support the developer freely</string>
+    <string name="switch_ads_settings">Mostra pubblicità</string>
+    <string name="switch_ads_settings_details">In questo modo supporterai lo sviluppatore in maniera gratuita per te</string>
 
-    <string name="switch_notification_settings">Show notifications</string>
-    <string name="switch_notification_settings_details">You will receive a notification every day at 07:00 am.\nThis could not work caused by OS battery optimisation</string>
+    <string name="switch_notification_settings">Mostra notifiche</string>
+    <string name="switch_notification_settings_details">Riceverai una notifica ogni giorno alle 07:00 di mattina.\nPotrebbe non funzionare correttamente a causa di impostazioni del sistema operativo sull\'ottimizzazione della batteria</string>
 
     <!-- Messages -->
-    <string name="loading_word">Loading the word of the day…</string>
-    <string name="offline_mode">You are not connected to the Internet, so the app is showing you the latest update of the word.</string>
-    <string name="internet_not_available">Internet is not available. Try later.</string>
-    <string name="error_try_later">Sorry. Our server does not answer.\nTry later.</string>
-    <string name="no_daily_word_try_later">There\'s a problem. Now, it is not available the word of the day.\nPlease, try later.</string>
-    <string name="button_try_again">Try again</string>
+    <string name="loading_word">Caricamento della parola del giorno in corso…</string>
+    <string name="offline_mode">Non sei connesso a Internet, per questo stai visualizzando l\'ultimo aggiornamento salvato sul dispositivo della parola.</string>
+    <string name="internet_not_available">Internet non è disponibile. Riprova più tardi.</string>
+    <string name="error_try_later">Spiacente! I server non stanno rispondendo.\nRiprova più tardi.</string>
+    <string name="no_daily_word_try_later">C\'è un problema e al momento non è disponibile la parola del giorno.\nSi prega di provare più tardi.</string>
+    <string name="button_try_again">Riprova</string>
 </resources>

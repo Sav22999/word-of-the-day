@@ -104,10 +104,10 @@ class MainActivity : AppCompatActivity() {
         }
         copyButton.isGone = false
 
-        var url = "https://play.google.com/store/apps/details?id=com.saverio.wordoftheday_en"
-        if (SOURCE_STORE == "FD-GH") {
-            url = "https://f-droid.org/packages/com.saverio.wordoftheday_en"
-        }
+        var url = "https://play.google.com/store/apps/details?id=com.saverio.wordoftheday_it"
+        /*if (SOURCE_STORE == "FD-GH") {
+            url = "https://f-droid.org/packages/com.saverio.wordoftheday_it"
+        }*/
 
         val shareButton: ImageView = findViewById(R.id.shareButton)
         shareButton.setOnClickListener {

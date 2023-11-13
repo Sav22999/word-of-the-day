@@ -7,7 +7,7 @@ android {
     compileSdkVersion 33
 
     defaultConfig {
-        applicationId 'com.saverio.wordoftheday_en'
+        applicationId 'com.saverio.wordoftheday_it'
         minSdkVersion 16
         targetSdk 33
         versionCode 16
