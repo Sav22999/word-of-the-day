@@ -13,8 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WordOfTheDay"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Settings"></activity>
-        <!--SplashScreen-->
+        <activity
+            android:name=".WordHistoryActivity"
+            android:exported="false" />
+        <activity android:name=".Settings" /> <!-- SplashScreen -->
         <activity
             android:name=".SplashScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -28,8 +30,7 @@
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize"
-            android:launchMode="singleTask">
-        </activity>
+            android:launchMode="singleTask"></activity>
 
         <receiver android:name=".NotificationReceiver" />
 

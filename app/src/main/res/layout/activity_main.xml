@@ -333,10 +333,23 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintStart_toEndOf="@+id/copyButton"
             app:layout_constraintTop_toBottomOf="@+id/topBarMain"
             app:srcCompat="?attr/actionModeShareDrawable"
+            tools:visibility="visible" />
+
+
+        <ImageView
+            android:id="@+id/wordHistoryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/copyButton"
+            app:layout_constraintTop_toBottomOf="@+id/topBarMain"
+            app:srcCompat="@drawable/ic_history"
             tools:visibility="visible" />
 
         <ImageView
@@ -345,7 +358,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="@+id/wordElement"
             app:layout_constraintTop_toBottomOf="@+id/topBarMain"
             app:srcCompat="@drawable/ic_settings"

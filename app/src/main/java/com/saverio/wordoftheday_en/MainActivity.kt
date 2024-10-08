@@ -62,6 +62,13 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         settingsButton.isGone = false
+
+        val wordHistoryButton: ImageView = findViewById(R.id.wordHistoryButton)
+        wordHistoryButton.setOnClickListener {
+            val intent = Intent(this, WordHistoryActivity::class.java).apply {}
+            startActivity(intent)
+        }
+        wordHistoryButton.isGone = false
     }
 
     fun loadWord() {
