@@ -63,5 +63,8 @@ class WordHistoryActivity : AppCompatActivity() {
         return wordDao.getAllWords() // This is now a suspend call
     }
 
+    fun backButton(view: android.view.View){
+        finish()
+    }
 
 }
