@@ -9,6 +9,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.text.Html
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -312,7 +313,7 @@ class MainActivity : AppCompatActivity() {
         definitionElement.text = definition
 
         if (definition != "") {
-            definitionElement.text = definition
+            definitionElement.text = Html.fromHtml(definition)
             definitionElement.isGone = false
             definitionTitle.isGone = false
         }
@@ -326,7 +327,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (etymology != "") {
-            etymologyElement.text = etymology
+            etymologyElement.text = Html.fromHtml(etymology)
             etymologyElement.isGone = false
             etymologyTitle.isGone = false
         }
