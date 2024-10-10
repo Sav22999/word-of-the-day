@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'com.google.devtools.ksp' version '1.9.0-1.0.12'
 }
 
 android {
@@ -44,19 +45,19 @@ android {
 
     compileOptions {
         // Set both source and target compatibility to Java 17
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
         // Set Kotlin target to Java 17
-        jvmTarget = "17"
+        jvmTarget = "11"
     }
 
     // Enable the JVM toolchain to ensure consistent versioning
     java {
         toolchain {
-            languageVersion.set(JavaLanguageVersion.of(17)) // Use 17 if you're downgrading Java
+            languageVersion.set(JavaLanguageVersion.of(11)) // Use 17 if you're downgrading Java
         }
     }
 
@@ -84,8 +85,10 @@ dependencies {
     // Room dependencies
     def room_version = '2.6.1'
     implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"  // Kotlin annotation processing
-    implementation "androidx.room:room-ktx:$room_version"  // Optional for coroutines support
+    implementation "androidx.room:room-ktx:$room_version"
+    ksp "androidx.room:room-compiler:2.5.0"
+
+    // Optional for coroutines support
 }
 
 
