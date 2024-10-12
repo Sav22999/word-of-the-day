@@ -2,9 +2,12 @@ package com.saverio.wordoftheday_en
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
@@ -19,6 +22,12 @@ class WordHistoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_word_history)
+
+
+//        For topbar to get aligned with system ui
+        val toolbarColor = ContextCompat.getColor(this, R.color.primary); // Replace with your Toolbar's background color resource
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);getWindow().setStatusBarColor(toolbarColor);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         val wordHistoryRecyclerView = findViewById<RecyclerView>(R.id.wordHistoryRecyclerView)
 
