@@ -1,27 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="15sp"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="10sp">
 
-    <TextView
-        android:id="@+id/wordDateView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/settingsMessageRestart"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:background="@drawable/radius_square"
+        android:paddingStart="5sp"
+        android:paddingTop="2sp"
+        android:paddingEnd="5sp"
+        android:paddingBottom="2sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topBarSettings"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/wordDateView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Date" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/wordView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="5sp"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        tools:text="Word learnt" />
 
     <TextView
         android:id="@+id/wordMeaningView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp" />
+        android:textSize="20sp"
+        tools:text="Definition" />
 </LinearLayout>
