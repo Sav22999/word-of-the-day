@@ -3,7 +3,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SET_ALARM" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -15,11 +15,14 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".WordHistoryActivity"
-            android:exported="false" />
+            android:configChanges="orientation|screenSize"
+            android:exported="false"
+            android:launchMode="singleTask" />
         <activity android:name=".Settings" /> <!-- SplashScreen -->
         <activity
             android:name=".SplashScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,6 +33,7 @@
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize"
+            android:exported="true"
             android:launchMode="singleTask"></activity>
 
         <receiver android:name=".NotificationReceiver" />
