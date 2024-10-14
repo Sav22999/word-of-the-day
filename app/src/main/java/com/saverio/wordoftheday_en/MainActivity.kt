@@ -309,11 +309,10 @@ class MainActivity : AppCompatActivity() {
         val sourceElement: TextView = findViewById(R.id.sourceElement)
 
         dateElement.text = getTheCorrectFormatDate(date)
-        wordElement.text = word
-        definitionElement.text = definition
+        wordElement.text = Html.fromHtml(word)
+        definitionElement.text = Html.fromHtml(definition)
 
         if (definition != "") {
-            definitionElement.text = Html.fromHtml(definition)
             definitionElement.isGone = false
             definitionTitle.isGone = false
         }
@@ -321,7 +320,7 @@ class MainActivity : AppCompatActivity() {
         if (word_type != "" && phonetics != "") {
             separator.isGone = false
         }
-        typeElement.text = word_type
+        typeElement.text = Html.fromHtml(word_type)
         if (phonetics != "") "/${phonetics}/".also {
             phoneticsElement.text = it
         }
@@ -334,10 +333,10 @@ class MainActivity : AppCompatActivity() {
 
         if (source != "") {
             sourceElement.isGone = false
-            sourceElement.text = getString(R.string.source_from).replace(
+            sourceElement.text = Html.fromHtml(getString(R.string.source_from).replace(
                 "{{*{{source}}*}}",
                 source
-            )
+            ))
         }
 
         loadButtons()

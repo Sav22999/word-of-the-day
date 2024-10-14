@@ -1,4 +1,5 @@
 package com.saverio.wordoftheday_it
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,8 +23,8 @@ class WordHistoryAdapter(private val words: List<Word>) : RecyclerView.Adapter<W
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
         val word = words[position]
         holder.wordDateView.text = word.date // Assuming `date` holds the date
-        holder.wordView.text = word.word // Assuming `word` has a `word` property
-        holder.wordMeaningView.text = word.definition // Assuming `definition` holds the meaning
+        holder.wordView.text = Html.fromHtml(word.word) // Assuming `word` has a `word` property
+        holder.wordMeaningView.text = Html.fromHtml(word.definition) // Assuming `definition` holds the meaning
     }
 
     override fun getItemCount(): Int {
