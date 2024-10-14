@@ -2,7 +2,10 @@ package com.saverio.wordoftheday_en
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.ContactsContract.CommonDataKinds.Im
 import android.view.MotionEvent
 import android.widget.ImageView
 import android.widget.Switch
@@ -60,6 +63,19 @@ class Settings : AppCompatActivity() {
             true
         }
         pushNotificationsSwitch.isChecked = getPushNotifications()
+
+        val saverioMorelliImage: ImageView = findViewById(R.id.imageDeveloper)
+        saverioMorelliImage.setOnClickListener {
+            val openURL = Intent(Intent.ACTION_VIEW)
+            openURL.data = Uri.parse("https://www.saveriomorelli.com/")
+            startActivity(openURL)
+        }
+        val saverioMorelliText: TextView = findViewById(R.id.textSaverioMorelli)
+        saverioMorelliImage.setOnClickListener {
+            val openURL = Intent(Intent.ACTION_VIEW)
+            openURL.data = Uri.parse("https://www.saveriomorelli.com/")
+            startActivity(openURL)
+        }
 
         val releaseNumber: TextView = findViewById(R.id.settingsReleaseNumber)
         releaseNumber.text = BuildConfig.VERSION_NAME + " (build#" + BuildConfig.VERSION_CODE + ")"

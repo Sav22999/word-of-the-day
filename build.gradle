@@ -5,7 +5,7 @@ buildscript {    ext {
     ext.kotlin_version = '1.9.10' // or whatever the latest version is
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$agp_version"
@@ -19,10 +19,10 @@ buildscript {    ext {
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 
-task clean(type: Delete) {
+tasks.register('clean', Delete) {
     delete rootProject.buildDir
 }

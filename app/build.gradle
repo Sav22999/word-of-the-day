@@ -39,6 +39,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
 
@@ -60,7 +61,6 @@ android {
             languageVersion.set(JavaLanguageVersion.of(11)) // Use 17 if you're downgrading Java
         }
     }
-
 
     namespace 'com.saverio.wordoftheday_en'
 }

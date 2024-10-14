@@ -32,7 +32,6 @@
             android:configChanges="orientation|screenSize"
             android:exported="true"
             android:launchMode="singleTask" />
-
         <receiver android:name=".NotificationReceiver" />
 
         <meta-data
