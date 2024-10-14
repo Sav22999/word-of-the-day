@@ -11,7 +11,7 @@ interface WordDao {
     @Query("SELECT COUNT(*) FROM word_history WHERE word = :word")
     suspend fun countWord(word: String): Int // Method to count occurrences of a word
 
-    @Query("SELECT * FROM word_history")
+    // Fetch all words ordered by 'id' in descending order (latest to oldest)
+    @Query("SELECT * FROM word_history ORDER BY id DESC")
     suspend fun getAllWords(): List<Word> // Now a suspend function
 }
-
