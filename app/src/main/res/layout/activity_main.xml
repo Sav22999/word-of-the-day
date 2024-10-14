@@ -303,11 +303,12 @@
             android:id="@+id/wordElement"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:elevation="0dp"
             android:paddingLeft="10sp"
             android:paddingTop="15sp"
             android:paddingRight="10sp"
             android:textSize="50sp"
-            android:elevation="0dp"
             app:flow_horizontalAlign="start"
             app:flow_verticalAlign="center"
             app:layout_constraintEnd_toEndOf="parent"
@@ -317,8 +318,8 @@
 
         <ImageView
             android:id="@+id/copyButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:visibility="gone"
@@ -329,14 +330,28 @@
 
         <ImageView
             android:id="@+id/shareButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:visibility="gone"
+            android:layout_marginTop="3dp"
+            android:visibility="visible"
             app:layout_constraintStart_toEndOf="@+id/copyButton"
             app:layout_constraintTop_toBottomOf="@+id/topBarMain"
             app:srcCompat="?attr/actionModeShareDrawable"
+            tools:visibility="visible" />
+
+
+        <ImageView
+            android:id="@+id/wordHistoryButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="10dp"
+            android:scaleType="fitCenter"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@+id/settingsButton"
+            app:layout_constraintTop_toBottomOf="@+id/topBarMain"
+            app:srcCompat="@drawable/ic_history"
             tools:visibility="visible" />
 
         <ImageView
@@ -344,9 +359,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@+id/wordElement"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/topBarMain"
             app:srcCompat="@drawable/ic_settings"
             tools:ignore="VectorDrawableCompat"

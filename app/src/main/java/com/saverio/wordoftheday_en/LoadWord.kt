@@ -3,6 +3,9 @@ package com.saverio.wordoftheday_en
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -78,6 +81,30 @@ class LoadWord {
                                     model.etymology,
                                     model.source
                                 )
+                            }
+
+                            val wordEntry = Word(
+                                date = getTheCorrectFormatDate(context, model.date, pattern),
+                                word = model.word,
+                                definition = model.definition,
+                                wordType = model.word_type,
+                                phonetics = model.phonetics,
+                                etymology = model.etymology,
+                                source = model.source
+                            )
+
+                            // Store in Room
+                            val wordDao = WordDatabase.getDatabase(context).wordDao()
+                            CoroutineScope(Dispatchers.IO).launch {
+                                val existingWordCount = wordDao.countWord(model.word)
+
+                                if (existingWordCount == 0) {
+                                    // Only insert if the word does not exist
+                                    wordDao.insertWord(wordEntry)
+                                    Log.d("LoadWord", "Word inserted: ${model.word}")
+                                } else {
+                                    Log.d("LoadWord", "Word already exists: ${model.word}")
+                                }
                             }
 
                             if (notificationReceiver != null) {
