@@ -1,4 +1,4 @@
-package com.saverio.wordoftheday_en
+package com.saverio.wordoftheday_it
 
 import com.google.gson.annotations.SerializedName
 

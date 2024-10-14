@@ -1,4 +1,4 @@
-package com.saverio.wordoftheday_en
+package com.saverio.wordoftheday_it
 
 import retrofit2.Call
 import retrofit2.http.GET
