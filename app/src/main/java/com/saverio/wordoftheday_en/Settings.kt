@@ -88,7 +88,7 @@ class Settings : AppCompatActivity() {
     fun loadButtons() {
         val backButton: ImageView = findViewById(R.id.backSettings)
         backButton.setOnClickListener {
-            onBackPressed()
+            finish()
         }
     }
 
