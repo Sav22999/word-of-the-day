@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,18 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WordOfTheDay"
-        android:usesCleartextTraffic="true">
-        <activity
-            android:name=".WordHistoryActivity"
-            android:configChanges="orientation|screenSize"
-            android:exported="false"
-            android:launchMode="singleTask" />
-        <activity android:name=".Settings" /> <!-- SplashScreen -->
+        android:usesCleartextTraffic="true"
+        tools:targetApi="m">
+        <activity android:name=".WordHistoryActivity" />
+        <activity android:name=".Settings" />
         <activity
             android:name=".SplashScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:exported="true"
-            android:label="@string/app_name">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,7 +31,7 @@
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true"
-            android:launchMode="singleTask"></activity>
+            android:launchMode="singleTask" />
 
         <receiver android:name=".NotificationReceiver" />
 
