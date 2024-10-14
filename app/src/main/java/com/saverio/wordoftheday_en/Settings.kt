@@ -13,6 +13,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
+import com.saverio.wordoftheday_it.BuildConfig
+import com.saverio.wordoftheday_it.R
 
 class Settings : AppCompatActivity() {
     @SuppressLint("ClickableViewAccessibility")

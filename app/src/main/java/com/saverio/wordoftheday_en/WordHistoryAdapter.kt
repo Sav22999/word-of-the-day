@@ -4,6 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.saverio.wordoftheday_it.R
 
 class WordHistoryAdapter(private val words: List<Word>) : RecyclerView.Adapter<WordHistoryAdapter.WordViewHolder>() {
 
