@@ -1,4 +1,4 @@
-package com.saverio.wordoftheday_en
+package com.saverio.wordoftheday_fr
 
 import android.annotation.TargetApi
 import android.content.BroadcastReceiver

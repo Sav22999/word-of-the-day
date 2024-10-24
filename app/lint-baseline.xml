@@ -7,7 +7,7 @@
         errorLine1="            PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT)"
         errorLine2="                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/saverio/wordoftheday_en/NotificationReceiver.kt"
+            file="src/main/java/com/saverio/wordoftheday_fr/NotificationReceiver.kt"
             line="74"
             column="59"/>
     </issue>

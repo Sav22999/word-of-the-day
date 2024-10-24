@@ -1,4 +1,4 @@
-package com.saverio.wordoftheday_en
+package com.saverio.wordoftheday_fr
 
 import android.annotation.SuppressLint
 import android.app.AlarmManager
@@ -110,9 +110,9 @@ class MainActivity : AppCompatActivity() {
         }
         copyButton.isGone = false
 
-        var url = "https://play.google.com/store/apps/details?id=com.saverio.wordoftheday_en"
+        var url = "https://play.google.com/store/apps/details?id=com.saverio.wordoftheday_fr"
         if (SOURCE_STORE == "FD-GH") {
-            url = "https://f-droid.org/packages/com.saverio.wordoftheday_en"
+            url = "https://f-droid.org/packages/com.saverio.wordoftheday_fr"
         }
 
         val shareButton: ImageView = findViewById(R.id.shareButton)

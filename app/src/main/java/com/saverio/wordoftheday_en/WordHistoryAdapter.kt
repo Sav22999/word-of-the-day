@@ -1,4 +1,4 @@
-package com.saverio.wordoftheday_en
+package com.saverio.wordoftheday_fr
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

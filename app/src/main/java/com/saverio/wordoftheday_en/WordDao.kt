@@ -1,4 +1,4 @@
-package com.saverio.wordoftheday_en
+package com.saverio.wordoftheday_fr
 
 import androidx.room.Dao
 import androidx.room.Insert

@@ -9,7 +9,7 @@ android {
     compileSdk 34
 
     defaultConfig {
-        applicationId 'com.saverio.wordoftheday_en'
+        applicationId 'com.saverio.wordoftheday_fr'
         minSdkVersion 21
         targetSdkVersion 34
         versionCode 17
@@ -66,7 +66,7 @@ android {
         baseline = file("lint-baseline.xml")
     }
 
-    namespace 'com.saverio.wordoftheday_en'
+    namespace 'com.saverio.wordoftheday_fr'
 }
 dependencies {
 

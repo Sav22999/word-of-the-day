@@ -1,4 +1,4 @@
-package com.saverio.wordoftheday_en
+package com.saverio.wordoftheday_fr
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

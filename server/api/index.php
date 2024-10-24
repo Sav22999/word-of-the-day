@@ -10,7 +10,7 @@ if ($c = new mysqli($localhost_db, $username_db, $password_db, $database_wordoft
 
     $today_date = "YEAR(`date`) = " . $year . " AND MONTH(`date`) = " . $month . " AND DAY(`date`) = " . $day;
 
-    $sql = "SELECT * FROM wordoftheday_en WHERE ${today_date}";
+    $sql = "SELECT * FROM wordoftheday_fr WHERE ${today_date}";
 
     $response = null;
 

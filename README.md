@@ -18,7 +18,7 @@ You can read the definition of the word, its origin / etymology, its pronunciati
 
 ### Where download the app
 
-[<img src="images/googlePlayBadge.png" width="200px"></img>](https://play.google.com/store/apps/details?id=com.saverio.wordoftheday_en) [<img src="images/fDroidBadge.png" width="200px"></img>](https://f-droid.org/it/packages/com.saverio.wordoftheday_en/)  [<img src="images/amazonAppStoreBadge.png" width="200px"></img>](https://www.amazon.com/Word-day-Learn-word-every/dp/B09HPVKZD1/) 
+[<img src="images/googlePlayBadge.png" width="200px"></img>](https://play.google.com/store/apps/details?id=com.saverio.wordoftheday_fr) [<img src="images/fDroidBadge.png" width="200px"></img>](https://f-droid.org/it/packages/com.saverio.wordoftheday_fr/)  [<img src="images/amazonAppStoreBadge.png" width="200px"></img>](https://www.amazon.com/Word-day-Learn-word-every/dp/B09HPVKZD1/) 
 
 You can download the app from the Google Play.
 
