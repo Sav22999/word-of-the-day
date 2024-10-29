@@ -28,10 +28,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".MigrateToTheNewApp"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true"
             android:launchMode="singleTask" />
+
         <receiver android:name=".NotificationReceiver" />
 
         <meta-data

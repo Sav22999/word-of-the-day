@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 8.7.0" type="baseline" client="gradle" dependencies="false" name="AGP (8.7.0)" variant="fatal" version="8.7.0">
+
+    <issue
+        id="UnspecifiedImmutableFlag"
+        message="Missing `PendingIntent` mutability flag"
+        errorLine1="            PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT)"
+        errorLine2="                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/saverio/wordoftheday_it/NotificationReceiver.kt"
+            line="74"
+            column="59"/>
+    </issue>
+
+</issues>

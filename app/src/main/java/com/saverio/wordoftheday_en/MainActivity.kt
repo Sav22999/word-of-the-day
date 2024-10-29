@@ -17,8 +17,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
 import androidx.lifecycle.Observer
-import com.saverio.wordoftheday_it.BuildConfig
-import com.saverio.wordoftheday_it.R
 //import com.google.android.gms.ads.*
 import java.text.SimpleDateFormat
 import java.time.LocalDate

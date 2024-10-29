@@ -19,6 +19,11 @@
 
     <string name="source_from">Estratto da {{*{{source}}*}}</string>
 
+    <string name="switch_to_the_new_app_msg1">Attenzione: effettuare il download della nuova app</string>
+    <string name="switch_to_the_new_app_msg2">Le app “Parola del giorno” e “Word of the Day” sono state unite in un’unica app per offrirti una migliore esperienza e nuove funzionalità. Ti invito a scaricare la nuova app per continuare a ricevere la tua parola del giorno!</string>
+    <string name="switch_to_the_new_app_msg3">Mi scuso per il disagio, prometto che mi farò perdonare!</string>
+    <string name="switch_to_the_new_app_msg4">Scarica la nuova App</string>
+
 
     <!-- Settings -->
     <string name="restart_the_app_to_apply_the_changes">Riavvia l\'app per applicare le modifiche</string>
