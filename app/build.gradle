@@ -12,8 +12,8 @@ android {
         applicationId 'com.saverio.wordoftheday_en'
         minSdkVersion 21
         targetSdkVersion 34
-        versionCode 16
-        versionName '1.5'
+        versionCode 18
+        versionName '2.1'
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -60,6 +60,10 @@ android {
         toolchain {
             languageVersion.set(JavaLanguageVersion.of(11)) // Use 17 if you're downgrading Java
         }
+    }
+
+    lint {
+        baseline = file("lint-baseline.xml")
     }
 
     namespace 'com.saverio.wordoftheday_en'

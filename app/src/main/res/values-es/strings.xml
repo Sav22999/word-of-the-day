@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Palabra del Día</string>
+
+    <string name="admob_app_id">ca-app-pub-4441008333572114~9393374757</string>
+    <string name="admob_banner_ad">ca-app-pub-4441008333572114/5206717736</string>
+
+    <string name="settings">Configuraciones</string>
+    <string name="words_learnt">Palabras aprendidas</string>
+
+    <string name="definition">Definición</string>
+    <string name="etymology">Etimología</string>
+
+    <string name="word_copied">Palabra copiada en el portapapeles</string>
+    <string name="the_word_of_the_day_is">La palabra del día es {{*{{word}}*}}. Descubre una nueva palabra cada día, ¡instala {{*{{link}}*}}!</string>
+    <string name="open_the_app_to_learn_more">Toca aquí y abre la aplicación para aprender más sobre esta palabra!</string>
+    <string name="share_text">Compartir</string>
+
+    <string name="separator">•</string>
+
+    <string name="source_from">Extraído de {{*{{source}}*}}</string>
+
+    <!-- Settings -->
+    <string name="restart_the_app_to_apply_the_changes">Reinicia la aplicación para aplicar los cambios</string>
+
+    <string name="switch_ads_settings">Mostrar anuncios</string>
+    <string name="switch_ads_settings_details">De esta manera, apoyarás al desarrollador de forma gratuita</string>
+
+    <string name="switch_notification_settings">Mostrar notificaciones</string>
+    <string name="switch_notification_settings_details">Recibirás una notificación cada día a las 07:00.\nEsto puede no funcionar debido a la optimización de la batería del sistema operativo</string>
+
+    <string name="choose_language">Elegir idioma</string>
+    <string name="choose_language_details">Verás una nueva palabra cada día en este idioma. Puedes cambiar el idioma en cualquier momento.</string>
+
+    <!-- Messages -->
+    <string name="loading_word">Cargando la palabra del día…</string>
+    <string name="offline_mode">No estás conectado a Internet, por lo que la aplicación te muestra la última actualización de la palabra.</string>
+    <string name="internet_not_available">Internet no está disponible. Intenta más tarde.</string>
+    <string name="error_try_later">Lo sentimos. Nuestro servidor no responde.\nIntenta más tarde.</string>
+    <string name="no_daily_word_try_later">Hay un problema. Ahora, la palabra del día no está disponible.\nPor favor, intenta más tarde.</string>
+    <string name="button_try_again">Intenta de nuevo</string>
+</resources>

@@ -19,7 +19,7 @@ abstract class WordDatabase : RoomDatabase() {
 
                     context.applicationContext,
                     WordDatabase::class.java,
-                    "word_database"
+                    "words_learnt_database"
                 ).build()
                 INSTANCE = instance
                 instance

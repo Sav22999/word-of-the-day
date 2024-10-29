@@ -12,5 +12,6 @@ data class Word(
     val wordType: String,
     val phonetics: String,
     val etymology: String,
-    val source: String
+    val source: String,
+    val language: String
 )

@@ -1,6 +1,7 @@
 package com.saverio.wordoftheday_en
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -28,7 +29,11 @@ class WordHistoryActivity : AppCompatActivity() {
         // Load words using coroutines
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val words = loadWords() // Fetch words in the background
+                val currentLanguage = applicationContext.getSharedPreferences(
+                    "language",
+                    Context.MODE_PRIVATE
+                ).getString("language", "en") ?: "en"
+                val words = loadWords(currentLanguage) // Fetch words in the background
 
                 // Toast to display fetched words
                 val wordsText =
@@ -67,9 +72,9 @@ class WordHistoryActivity : AppCompatActivity() {
         }
     }
 
-    private suspend fun loadWords(): List<Word> {
+    private suspend fun loadWords(language: String): List<Word> {
         val wordDao = WordDatabase.getDatabase(this).wordDao()
-        return wordDao.getAllWords() // This is now a suspend call
+        return wordDao.getAllWords(language) // This is now a suspend call
     }
 
     fun backButton(view: android.view.View) {

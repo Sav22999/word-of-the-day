@@ -5,16 +5,26 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Im
 import android.view.MotionEvent
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.ImageView
+import android.widget.Spinner
+import android.content.res.Configuration
+import android.os.Build
 import android.widget.Switch
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
+import androidx.multidex.BuildConfig
+import com.saverio.wordoftheday_en.allLanguages
+import java.util.Locale
 
 class Settings : AppCompatActivity() {
+
+    var ableToChangeLanguage = false
+
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,6 +93,8 @@ class Settings : AppCompatActivity() {
         checkSettingsChanged()
 
         loadButtons()
+
+        loadLanguages()
     }
 
     fun loadButtons() {
@@ -90,6 +102,92 @@ class Settings : AppCompatActivity() {
         backButton.setOnClickListener {
             finish()
         }
+    }
+
+    fun loadLanguages() {
+        this.ableToChangeLanguage = false
+        // Initialize spinner and language data
+        val languageContainer: Spinner = findViewById(R.id.settingsLanguageSpinner)
+        val allLanguages = allLanguages()
+        val languages = allLanguages.getLanguages()           // List of all languages
+        val currentLanguage = getCurrentLanguage()             // Current language code
+        val languageNames = allLanguages.getLanguageNames()    // List of all language names
+        val languageName =
+            allLanguages.getLanguageName(currentLanguage) // Display name of the current language
+        val languageNameIndex =
+            allLanguages.getIndexOfLanguage(currentLanguage) // Index of the current language
+
+        // Set up the ArrayAdapter for the Spinner
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, languageNames)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        languageContainer.adapter = adapter
+
+        // Set Spinner to display current language
+        if (languageNameIndex >= 0) {
+            this.ableToChangeLanguage = true
+            languageContainer.setSelection(languageNameIndex)
+        } else {
+            //println("Language name index not found")
+            languageContainer.setSelection(0)
+            this.ableToChangeLanguage = true
+        }
+
+        // Listen for spinner selection changes
+        languageContainer.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: android.view.View,
+                position: Int,
+                id: Long
+            ) {
+                if (ableToChangeLanguage) {
+                    // Check if the language has changed
+                    if (languages[position] != currentLanguage) {
+                        setSettingsChanged()
+                        checkSettingsChanged()
+
+                        // Save selected language to SharedPreferences
+                        val selectedLanguage = languages[position]
+                        getSharedPreferences("language", Context.MODE_PRIVATE).edit()
+                            .putString("language", selectedLanguage).apply()
+
+                        // Set also the app language
+                        setAppLocale(this@Settings, selectedLanguage)
+
+                        // Set variable "restartRequiredMain" to true
+                        setSettingsChanged()
+
+                        // Restart the activity
+                        finish()
+                        startActivity(intent)
+                    }
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Handle case when nothing is selected if needed
+            }
+        }
+    }
+
+    fun setAppLocale(context: Context, languageCode: String) {
+        val locale = Locale(languageCode)
+        Locale.setDefault(locale)
+
+        val config = Configuration(context.resources.configuration)
+        config.setLocale(locale)
+
+        // Update the configuration for the app's resources
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            context.resources.updateConfiguration(config, context.resources.displayMetrics)
+            context.createConfigurationContext(config) // For API 24+
+        } else {
+            context.resources.updateConfiguration(config, context.resources.displayMetrics)
+        }
+    }
+
+    fun getCurrentLanguage(): String {
+        return getSharedPreferences("language", Context.MODE_PRIVATE).getString("language", "en")!!
     }
 
     /*
