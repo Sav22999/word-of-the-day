@@ -122,7 +122,7 @@
                 android:paddingBottom="10sp"
                 android:text="···"
                 android:textColor="@color/white"
-                android:textSize="40sp"
+                android:textSize="35sp"
                 android:textStyle="bold"
                 app:flow_horizontalAlign="center"
                 app:flow_verticalAlign="center"

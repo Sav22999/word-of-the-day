@@ -50,13 +50,13 @@
                 android:paddingBottom="10sp"
                 android:text="@string/words_learnt"
                 android:textColor="@color/white"
-                android:textSize="40sp"
+                android:textSize="35sp"
                 android:textStyle="bold"
                 app:flow_horizontalAlign="center"
                 app:flow_verticalAlign="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/backButton"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

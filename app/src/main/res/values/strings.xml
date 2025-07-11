@@ -29,6 +29,9 @@
     <string name="switch_notification_settings">Show notifications</string>
     <string name="switch_notification_settings_details">You will receive a notification every day at 07:00 am.\nThis could not work caused by OS battery optimisation</string>
 
+    <string name="choose_language">Choose language</string>
+    <string name="choose_language_details">You will see a new word every day in this language. You can change the language at any time.</string>
+
     <!-- Messages -->
     <string name="loading_word">Loading the word of the day…</string>
     <string name="offline_mode">You are not connected to the Internet, so the app is showing you the latest update of the word.</string>

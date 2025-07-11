@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Wort des Tages</string>
+
+    <string name="admob_app_id">ca-app-pub-4441008333572114~9393374757</string>
+    <string name="admob_banner_ad">ca-app-pub-4441008333572114/5206717736</string>
+
+    <string name="settings">Einstellungen</string>
+    <string name="words_learnt">Gelernt Wörter</string>
+
+    <string name="definition">Definition</string>
+    <string name="etymology">Etymologie</string>
+
+    <string name="word_copied">Wort in die Zwischenablage kopiert</string>
+    <string name="the_word_of_the_day_is">Das Wort des Tages ist {{*{{word}}*}}. Entdecke jeden Tag ein neues Wort, installiere {{*{{link}}*}}!</string>
+    <string name="open_the_app_to_learn_more">Tippe hier und öffne die App, um mehr über dieses Wort zu erfahren!</string>
+    <string name="share_text">Teilen</string>
+
+    <string name="separator">•</string>
+
+    <string name="source_from">Entnommen aus {{*{{source}}*}}</string>
+
+    <!-- Settings -->
+    <string name="restart_the_app_to_apply_the_changes">Starte die App neu, um die Änderungen anzuwenden</string>
+
+    <string name="switch_ads_settings">Werbung anzeigen</string>
+    <string name="switch_ads_settings_details">So unterstützt du den Entwickler kostenlos</string>
+
+    <string name="switch_notification_settings">Benachrichtigungen anzeigen</string>
+    <string name="switch_notification_settings_details">Du erhältst jeden Tag um 07:00 Uhr eine Benachrichtigung.\nDas könnte aufgrund der Batterieoptimierung des Betriebssystems nicht funktionieren</string>
+
+    <string name="choose_language">Sprache wählen</string>
+    <string name="choose_language_details">Du wirst jeden Tag ein neues Wort in dieser Sprache sehen. Du kannst die Sprache jederzeit ändern.</string>
+
+    <!-- Messages -->
+    <string name="loading_word">Lade das Wort des Tages…</string>
+    <string name="offline_mode">Du bist nicht mit dem Internet verbunden, daher zeigt die App dir das neueste Update des Wortes an.</string>
+    <string name="internet_not_available">Internet ist nicht verfügbar. Versuche es später erneut.</string>
+    <string name="error_try_later">Entschuldigung. Unser Server antwortet nicht.\nVersuche es später erneut.</string>
+    <string name="no_daily_word_try_later">Es gibt ein Problem. Das Wort des Tages ist derzeit nicht verfügbar.\nBitte versuche es später erneut.</string>
+    <string name="button_try_again">Erneut versuchen</string>
+</resources>

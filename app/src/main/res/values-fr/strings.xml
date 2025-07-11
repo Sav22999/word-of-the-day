@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Mot du Jour</string>
+
+    <string name="admob_app_id">ca-app-pub-4441008333572114~9393374757</string>
+    <string name="admob_banner_ad">ca-app-pub-4441008333572114/5206717736</string>
+
+    <string name="settings">Paramètres</string>
+    <string name="words_learnt">Mots appris</string>
+
+    <string name="definition">Définition</string>
+    <string name="etymology">Étymologie</string>
+
+    <string name="word_copied">Mot copié dans le presse-papiers</string>
+    <string name="the_word_of_the_day_is">Le mot du jour est {{*{{word}}*}}. Découvrez un nouveau mot chaque jour, installez {{*{{link}}*}}!</string>
+    <string name="open_the_app_to_learn_more">Appuyez ici et ouvrez l\'application pour en savoir plus sur ce mot!</string>
+    <string name="share_text">Partager</string>
+
+    <string name="separator">•</string>
+
+    <string name="source_from">Extrait de {{*{{source}}*}}</string>
+
+    <!-- Settings -->
+    <string name="restart_the_app_to_apply_the_changes">Redémarrez l\'application pour appliquer les modifications</string>
+
+    <string name="switch_ads_settings">Afficher les publicités</string>
+    <string name="switch_ads_settings_details">Ainsi, vous soutiendrez le développeur gratuitement</string>
+
+    <string name="switch_notification_settings">Afficher les notifications</string>
+    <string name="switch_notification_settings_details">Vous recevrez une notification chaque jour à 07h00.\nCela peut ne pas fonctionner à cause de l\'optimisation de la batterie par le système d\'exploitation</string>
+
+    <string name="choose_language">Choisir la langue</string>
+    <string name="choose_language_details">Vous verrez un nouveau mot chaque jour dans cette langue. Vous pouvez changer la langue à tout moment.</string>
+
+    <!-- Messages -->
+    <string name="loading_word">Chargement du mot du jour…</string>
+    <string name="offline_mode">Vous n\'êtes pas connecté à Internet, donc l\'application vous montre la dernière mise à jour du mot.</string>
+    <string name="internet_not_available">Internet n\'est pas disponible. Réessayez plus tard.</string>
+    <string name="error_try_later">Désolé. Notre serveur ne répond pas.\nRéessayez plus tard.</string>
+    <string name="no_daily_word_try_later">Il y a un problème. Le mot du jour n\'est pas actuellement disponible.\nVeuillez réessayer plus tard.</string>
+    <string name="button_try_again">Réessayer</string>
+</resources>

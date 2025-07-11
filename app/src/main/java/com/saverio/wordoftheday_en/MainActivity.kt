@@ -40,6 +40,26 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //The first time ever the app is launched, set the language to the device's language
+        if (getSharedPreferences("language", Context.MODE_PRIVATE).getString(
+                "language",
+                ""
+            ) == ""
+        ) {
+            //get the device's language
+            val language = Locale.getDefault().language
+
+            //check the language is supported
+            val languages = allLanguages()
+            if (!languages.getLanguages().contains(language)) {
+                getSharedPreferences("language", Context.MODE_PRIVATE).edit()
+                    .putString("language", "en").apply()
+            } else {
+                getSharedPreferences("language", Context.MODE_PRIVATE).edit()
+                    .putString("language", language).apply()
+            }
+        }
+
         checkNetwork()
 
         setSettingsNotChanged()
@@ -68,6 +88,18 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         wordHistoryButton.isGone = false
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        checkSettingsChanged()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+
+        checkSettingsChanged()
     }
 
     fun loadWord() {
@@ -201,8 +233,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setSettingsNotChanged() {
-        getSharedPreferences("settings_changes", Context.MODE_PRIVATE).edit()
-            .putBoolean("settings_changes", false).apply()
+        //getSharedPreferences("settings_changes", Context.MODE_PRIVATE).edit() .putBoolean("settings_changes", false).apply()
+    }
+
+    fun checkSettingsChanged() {
+        //load the variable "restartRequired" from the sharedPreferences
+        val restartRequired = getSharedPreferences("settings_changes", Context.MODE_PRIVATE)
+            .getBoolean("settings_changes", false)
+
+        //if the variable is true, finish the activity and start it again
+        if (restartRequired) {
+            //set the variable to false
+            getSharedPreferences("settings_changes", Context.MODE_PRIVATE).edit()
+                .putBoolean("settings_changes", false).apply()
+
+            // Restart the activity
+            val intent = Intent(this, MainActivity::class.java)
+            finish()
+            startActivity(intent)
+        }
     }
 
     fun isConnected(): Boolean {

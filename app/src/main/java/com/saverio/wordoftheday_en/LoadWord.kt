@@ -42,7 +42,11 @@ class LoadWord {
             .build()
 
         val jsonAPI = retrofit.create(jsonAPI::class.java)
-        val mcall: Call<Model> = jsonAPI.getInfo()
+
+        val language = context.getSharedPreferences("language", Context.MODE_PRIVATE)
+            .getString("language", "en") ?: "en"
+
+        val mcall: Call<Model> = jsonAPI.getInfo(language)
         try {
             mcall.enqueue(
                 object : Callback<Model> {
@@ -70,6 +74,11 @@ class LoadWord {
                             setDataOffline(context, "etymology", model.etymology)
                             setDataOffline(context, "source", model.source)
 
+                            val currentLanguage = context.getSharedPreferences(
+                                "language",
+                                Context.MODE_PRIVATE
+                            ).getString("language", "en") ?: "en"
+
                             if (mainActivity != null) {
                                 mainActivity.hideMessage()
                                 mainActivity.setAllFields(
@@ -79,7 +88,7 @@ class LoadWord {
                                     model.phonetics,
                                     model.word_type,
                                     model.etymology,
-                                    model.source
+                                    model.source,
                                 )
                             }
 
@@ -90,13 +99,15 @@ class LoadWord {
                                 wordType = model.word_type,
                                 phonetics = model.phonetics,
                                 etymology = model.etymology,
-                                source = model.source
+                                source = model.source,
+                                language = currentLanguage
                             )
 
                             // Store in Room
                             val wordDao = WordDatabase.getDatabase(context).wordDao()
                             CoroutineScope(Dispatchers.IO).launch {
-                                val existingWordCount = wordDao.countWord(model.word)
+                                val existingWordCount =
+                                    wordDao.countWord(model.word, currentLanguage)
 
                                 if (existingWordCount == 0) {
                                     // Only insert if the word does not exist
@@ -121,7 +132,7 @@ class LoadWord {
                                     notificationNumber
                                 )
                             }
-                        } else if (model != null && model.date == "null") {
+                        } else if (model != null && model.date === "null") {
                             //no word
                             if (attempsTemp <= maxAttempts) {
                                 loadWord(
