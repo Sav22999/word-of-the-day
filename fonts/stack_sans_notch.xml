@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Font-family wrapper that points to the TTF resource. Use @font/stack_sans_notch_family as fontFamily in layouts or styles -->
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/stack_sans_notch" />
+</font-family>
+
+

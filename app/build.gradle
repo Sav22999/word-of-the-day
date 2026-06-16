@@ -6,14 +6,18 @@ plugins {
 }
 
 android {
-    compileSdk 34
+    // Bump compileSdk to match target SDK requirement (minimum 35)
+    compileSdk 35
 
     defaultConfig {
         applicationId 'com.saverio.wordoftheday_en'
         minSdkVersion 21
-        targetSdkVersion 34
-        versionCode 18
-        versionName '2.1'
+        // Target the latest API level required (bumped from 34 to 35)
+        targetSdkVersion 35
+        // Bump app version: minor increment
+        // versionCode must increase for Play Store; versionName shows human-readable version
+        versionCode 20
+        versionName '2.2'
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -21,6 +25,8 @@ android {
 
     buildFeatures {
         viewBinding true
+        // Keep BuildConfig generation enabled explicitly. Default will become false in AGP 9.0
+        buildConfig true
     }
 
     flavorDimensions "source_store"
