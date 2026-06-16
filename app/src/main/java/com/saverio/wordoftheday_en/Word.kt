@@ -1,9 +1,11 @@
 package com.saverio.wordoftheday_en
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "word_history")
+// Add a unique index on (word, language) to avoid duplicate entries at the DB level
+@Entity(tableName = "word_history", indices = [Index(value = ["word", "language"], unique = true)])
 data class Word(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val date: String,

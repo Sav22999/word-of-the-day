@@ -45,6 +45,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:background="@color/primary"
+        android:fontFamily="@font/stack_sans_notch"
         android:text="Saverio Morelli"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
